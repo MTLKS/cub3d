@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2022/12/18 13:02:17 by maliew           ###   ########.fr       */
+/*   Created: 2022/07/09 03:44:28 by maliew            #+#    #+#             */
+/*   Updated: 2022/09/29 02:20:49 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ft_ctype.h"
 
-int	main(int argc, char **argv)
+int	ft_tolower(int c)
 {
-	t_ctx	ctx;
-
-	if (argc != 2)
-	{
-		
-	}
-	(void)argc;
-	(void)argv;
-	ctx.mlx = mlx_init();
-	ctx.win = mlx_new_window(ctx.mlx, 1280, 720, "cub3d");
-	mlx_loop(ctx.mlx);
-	return (0);
+	if (ft_isupper(c))
+		return (c + 32);
+	return (c);
 }

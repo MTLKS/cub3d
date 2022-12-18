@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_ispunct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 00:39:25 by maliew            #+#    #+#             */
-/*   Updated: 2022/07/09 02:07:58 by maliew           ###   ########.fr       */
+/*   Created: 2022/09/29 02:21:23 by maliew            #+#    #+#             */
+/*   Updated: 2022/09/29 05:04:35 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ctype.h"
 
-int	ft_isalnum(int c)
+int	ft_ispunct(int c)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	return (ft_isgraph(c) && !ft_isalnum(c));
 }
