@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlxx_xpm_to_img.c                                  :+:      :+:    :+:   */
+/*   cub_color_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 01:10:47 by maliew            #+#    #+#             */
-/*   Updated: 2022/12/18 12:36:37 by maliew           ###   ########.fr       */
+/*   Created: 2022/12/31 11:13:20 by maliew            #+#    #+#             */
+/*   Updated: 2022/12/31 11:16:36 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_mlxx_img	*mlxx_xpm_file_to_img(void *mlx, char *path)
+int	cub_create_trgb(int t, int r, int g, int b)
 {
-	t_mlxx_img	*res;
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
-	res = (t_mlxx_img *)malloc(sizeof(t_mlxx_img));
-	res->img = mlx_xpm_file_to_image(mlx, path, &res->width, &res->height);
-	if (res->img == NULL)
-		return (NULL);
-	return (res);
+unsigned char	cub_get_t(int trgb)
+{
+	return (((unsigned char *)&trgb)[3]);
+}
+
+unsigned char	cub_get_r(int trgb)
+{
+	return (((unsigned char *)&trgb)[2]);
+}
+
+unsigned char	cub_get_g(int trgb)
+{
+	return (((unsigned char *)&trgb)[1]);
+}
+
+unsigned char	cub_get_b(int trgb)
+{
+	return (((unsigned char *)&trgb)[0]);
 }
