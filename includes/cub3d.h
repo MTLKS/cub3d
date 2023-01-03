@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/03 16:00:46 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:38:30 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_ctx
 	char				**map;
 	int					map_width;
 	int					map_height;
-	t_mlxx_img			*img;
+	void				*img;
 	t_mlxx_img			*north;
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;

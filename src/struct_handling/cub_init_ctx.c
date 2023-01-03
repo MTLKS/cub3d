@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/03 16:00:39 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/03 16:38:41 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->ceiling = 0;
 	ctx->floor_parsed = 0;
 	ctx->ceiling_parsed = 0;
+	
+	ctx->mlx_data = ft_calloc(1, sizeof(t_mlxx_data_addr));
 	ctx->player = ft_calloc(1, sizeof(t_player)); //TODO: Remember to free this
 	if (!ctx->player)
 		ft_printf("Error initializing player, out of memory");
