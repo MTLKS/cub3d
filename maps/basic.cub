@@ -1,0 +1,19 @@
+SO   ./assets/bark.xpm
+
+WE ./assets/bookshelf.xpm
+EA     ./assets/bricks.xpm
+
+NO   ./assets/leavesop.xpm
+
+
+C    0,0,255
+F       255,0,0
+
+11111111
+10100001
+10100001
+10100001
+1000N001
+10000101
+10000001
+11111111

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/02 17:31:23 by maliew           ###   ########.fr       */
+/*   Updated: 2023/01/03 16:00:46 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@
 #  define KEY_UP 65364
 # endif
 
+# define PI 3.141592654
+# define DR 0.0174533
+
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	float	angle;
+	float	delta_x;
+	float	delta_y;
+}	t_player;
+
 typedef struct s_mlxx_data_addr
 {
 	char	*address;
@@ -58,25 +70,65 @@ typedef struct s_mlxx_img
 
 typedef struct s_ctx
 {
-	void		*mlx;
-	void		*win;
-	char		**map;
-	int			map_width;
-	int			map_height;
-	t_mlxx_img	*north;
-	t_mlxx_img	*south;
-	t_mlxx_img	*east;
-	t_mlxx_img	*west;
-	int			ceiling;
-	int			floor;
-	int			ceiling_parsed;
-	int			floor_parsed;
+	void				*mlx;
+	void				*win;
+	char				**map;
+	int					map_width;
+	int					map_height;
+	t_mlxx_img			*img;
+	t_mlxx_img			*north;
+	t_mlxx_img			*south;
+	t_mlxx_img			*east;
+	t_mlxx_img			*west;
+	t_mlxx_data_addr	*mlx_data;
+	int					ceiling;
+	int					floor;
+	int					ceiling_parsed;
+	int					floor_parsed;
+	t_player			*player;
 }	t_ctx;
 
+// Drawing structs
+typedef struct s_line
+{
+	float	x1;
+	float	y1;
+	float	x2;
+	float	y2;
+}	t_line;
+
+typedef struct s_square
+{
+	int	x;
+	int	y;
+	int	size;
+}	t_square;
+
+typedef struct s_ray
+{
+	float	x;
+	float	y;
+	float	dist;
+}	t_ray;
+
+// Temporary struct for ray calculation
+typedef struct s_temp
+{
+	float	ray_x;
+	float	ray_y;
+	float	ray_angle;
+	float	tan_multip;
+	float	x_offset;
+	float	y_offset;
+}	t_temp;
 
 // Utils
 
 int				cub_2darray_count_row(char **array);
+float			dist(float x1, float y1, float x2, float y2);
+float			deg_to_rad(float angle);
+float			deg_limit(float angle);
+float			rad_limit(float angle);
 
 // Image handling
 
@@ -107,7 +159,19 @@ unsigned char	cub_get_b(int trgb);
 // Testing purposes
 
 t_mlxx_img		*square(t_ctx *ctx, int color);
-int				key_hook(int keycode, t_ctx *ctx);
 int				loop_hook(t_ctx *ctx);
+
+// Hooks
+int				key_hook(int keycode, t_ctx *ctx);
+int				render(t_ctx *ctx);
+
+// Drawing
+void			put_pixel(t_ctx *ctx, int x, int y, int color);
+void			draw_square(t_ctx *ctx, t_square square, int color);
+void			draw_line(t_ctx *ctx, t_line line, int color);
+void			draw_player(t_ctx *ctx, int color, int size);
+void			draw_map(t_ctx *ctx);
+void			draw_rays(t_ctx *ctx);
+void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
 
 #endif
