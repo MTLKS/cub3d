@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/01/04 15:56:30 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:26:46 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	render(t_ctx *ctx)
 			&ctx->mlx_data->pixel_bits,
 			&ctx->mlx_data->size_line, &ctx->mlx_data->endian);
 	draw_map(ctx);
-	draw_rays(ctx);
+	cast_rays(ctx);
 	draw_player(ctx, 0x00FFFF00, 8);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img->img, 0, 0);
 	return (0);

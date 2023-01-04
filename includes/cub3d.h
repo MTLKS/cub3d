@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/04 15:56:07 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:49:23 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <mlx.h>
 # include <math.h>
+# include <stdio.h>
 
 // Key definition
 # ifdef __APPLE__
@@ -109,6 +110,8 @@ typedef struct s_ray
 	float	x;
 	float	y;
 	float	dist;
+	float	deg;
+	float	color;
 }	t_ray;
 
 // Temporary struct for ray calculation
@@ -171,7 +174,8 @@ void			draw_square(t_ctx *ctx, t_square square, int color);
 void			draw_line(t_ctx *ctx, t_line line, int color);
 void			draw_player(t_ctx *ctx, int color, int size);
 void			draw_map(t_ctx *ctx);
-void			draw_rays(t_ctx *ctx);
+void			cast_rays(t_ctx *ctx);
+void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg);
 void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
 
 #endif
