@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init_ctx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/04 15:57:04 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/08 21:13:27 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,15 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->player = ft_calloc(1, sizeof(t_player)); //TODO: Remember to free this
 	if (!ctx->player)
 		ft_printf("Error initializing player, out of memory");
-	ctx->player->delta_x = cos(ctx->player->angle) * 5;
-	ctx->player->delta_y = sin(ctx->player->angle) * 5;
+	ctx->player->delta_x = cos(ctx->player->angle) * 2;
+	ctx->player->delta_y = sin(ctx->player->angle) * 2;
 	ctx->player->x = 300;
 	ctx->player->y = 300;
+	ctx->key.w = 0;
+	ctx->key.a = 0;
+	ctx->key.s = 0;
+	ctx->key.d = 0;
+	ctx->key.left = 0;
+	ctx->key.right = 0;
+	ctx->key.mouse = 0;
 }

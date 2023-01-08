@@ -1,6 +1,6 @@
 NAME		= cub3d
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 RM			= rm -rf
 LIBFT		= libft
 
@@ -10,7 +10,7 @@ ifeq ($(UNAME), Linux)
 	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
 endif
 ifeq ($(UNAME), Darwin)
-	MLXFLAGS	= -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -Imlx
+	MLXFLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit -I./mlx/
 	MLXFLAGS2	=
 endif
 

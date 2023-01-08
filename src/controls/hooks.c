@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/01/08 01:35:28 by maliew           ###   ########.fr       */
+/*   Updated: 2023/01/08 20:34:44 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	render(t_ctx *ctx)
 	ctx->mlx_data->address = mlx_get_data_addr(ctx->img->img,
 			&ctx->mlx_data->pixel_bits,
 			&ctx->mlx_data->size_line, &ctx->mlx_data->endian);
+	move_player(ctx);
 	draw_map(ctx);
 	cast_rays(ctx);
 	draw_player(ctx, 0x00FFFF00, 8);
@@ -39,42 +40,42 @@ int	render(t_ctx *ctx)
  * @param ctx 
  * @return int 
  */
-int	key_hook(int keycode, t_ctx *ctx)
-{
-	if (keycode == KEY_W)
-	{
-		ctx->player->x += ctx->player->delta_x;
-		ctx->player->y += ctx->player->delta_y;
-	}
-	else if (keycode == KEY_A)
-	{
-		ctx->player->angle -= 0.1;
-		if (ctx->player->angle < 0)
-			ctx->player->angle += 2 * PI;
-		ctx->player->delta_x = cos(ctx->player->angle) * 5;
-		ctx->player->delta_y = sin(ctx->player->angle) * 5;
-	}
-	else if (keycode == KEY_S)
-	{
-		ctx->player->x -= ctx->player->delta_x;
-		ctx->player->y -= ctx->player->delta_y;
-	}
-	else if (keycode == KEY_D)
-	{
-		ctx->player->angle += 0.1;
-		if (ctx->player->angle > 2 * PI)
-			ctx->player->angle -= 2 * PI;
-		ctx->player->delta_x = cos(ctx->player->angle) * 5;
-		ctx->player->delta_y = sin(ctx->player->angle) * 5;
-	}
-	else if (keycode == KEY_ESC)
-	{
-		ft_printf("ESC pressed.\n"); // Change to quit and free later
-		system("leaks -q cub3d");
-		exit(0);
-	}
-	return (keycode);
-}
+// int	key_hook(int keycode, t_ctx *ctx)
+// {
+// 	if (keycode == KEY_W)
+// 	{
+// 		ctx->player->x += ctx->player->delta_x;
+// 		ctx->player->y += ctx->player->delta_y;
+// 	}
+// 	else if (keycode == KEY_A)
+// 	{
+// 		ctx->player->angle -= 0.1;
+// 		if (ctx->player->angle < 0)
+// 			ctx->player->angle += 2 * PI;
+// 		ctx->player->delta_x = cos(ctx->player->angle) * 5;
+// 		ctx->player->delta_y = sin(ctx->player->angle) * 5;
+// 	}
+// 	else if (keycode == KEY_S)
+// 	{
+// 		ctx->player->x -= ctx->player->delta_x;
+// 		ctx->player->y -= ctx->player->delta_y;
+// 	}
+// 	else if (keycode == KEY_D)
+// 	{
+// 		ctx->player->angle += 0.1;
+// 		if (ctx->player->angle > 2 * PI)
+// 			ctx->player->angle -= 2 * PI;
+// 		ctx->player->delta_x = cos(ctx->player->angle) * 5;
+// 		ctx->player->delta_y = sin(ctx->player->angle) * 5;
+// 	}
+// 	else if (keycode == KEY_ESC)
+// 	{
+// 		ft_printf("ESC pressed.\n"); // Change to quit and free later
+// 		system("leaks -q cub3d");
+// 		exit(0);
+// 	}
+// 	return (keycode);
+// }
 
 // /**
 //  * @brief Just an intermediary to close the game
