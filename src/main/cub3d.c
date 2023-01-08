@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/03 15:48:50 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/08 11:45:47 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	// ft_printf("%p %p %p %p\n", ctx.north, ctx.south, ctx.east, ctx.west);
 	mlx_do_key_autorepeaton(ctx.mlx);
 	mlx_loop_hook(ctx.mlx, render, &ctx);
-	mlx_hook(ctx.win, 2, 0, key_hook, &ctx);
+	mlx_hook(ctx.win, 2, 1L << 0, key_hook, &ctx);
 	mlx_loop(ctx.mlx);
 	return (0);
 }
