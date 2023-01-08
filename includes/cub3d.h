@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/04 16:49:23 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/08 18:06:03 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@
 # define PI 3.141592654
 # define DR 0.0174533
 
+# define SCREEN_WIDTH 1024
+# define SCREEN_HEIGHT 512
+
 typedef struct s_player
 {
 	float	x;
@@ -77,6 +80,8 @@ typedef struct s_ctx
 	int					map_width;
 	int					map_height;
 	t_mlxx_img			*img;
+	t_mlxx_img			*map_image;
+	t_mlxx_img			*minimap_image;
 	t_mlxx_img			*north;
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;
@@ -161,7 +166,7 @@ unsigned char	cub_get_b(int trgb);
 
 // Testing purposes
 
-t_mlxx_img		*square(t_ctx *ctx, int color);
+t_mlxx_img		*mlxx_new_rect(t_ctx *ctx, int width, int height, int color);
 int				loop_hook(t_ctx *ctx);
 
 // Hooks
@@ -177,5 +182,10 @@ void			draw_map(t_ctx *ctx);
 void			cast_rays(t_ctx *ctx);
 void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg);
 void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
+
+// Minimap
+
+int				generate_map_image(t_ctx *ctx);
+int				generate_minimap_image(t_ctx *ctx);
 
 #endif

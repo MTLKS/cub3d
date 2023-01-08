@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/01/08 01:35:28 by maliew           ###   ########.fr       */
+/*   Updated: 2023/01/08 18:05:14 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	render(t_ctx *ctx)
 	ctx->mlx_data->address = mlx_get_data_addr(ctx->img->img,
 			&ctx->mlx_data->pixel_bits,
 			&ctx->mlx_data->size_line, &ctx->mlx_data->endian);
-	draw_map(ctx);
+	// draw_map(ctx);
+	generate_minimap_image(ctx);
+	mlxx_copy_image(ctx->img, ctx->minimap_image, 0, 0);
 	cast_rays(ctx);
-	draw_player(ctx, 0x00FFFF00, 8);
+	// draw_player(ctx, 0x00FFFF00, 8);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img->img, 0, 0);
 	mlxx_destroy_img(ctx->mlx, ctx->img);
 	return (0);
@@ -70,7 +72,7 @@ int	key_hook(int keycode, t_ctx *ctx)
 	else if (keycode == KEY_ESC)
 	{
 		ft_printf("ESC pressed.\n"); // Change to quit and free later
-		system("leaks -q cub3d");
+		// system("leaks -q cub3d");
 		exit(0);
 	}
 	return (keycode);

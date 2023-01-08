@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:59:24 by echai             #+#    #+#             */
-/*   Updated: 2023/01/04 15:59:27 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/08 18:06:34 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,23 @@
 // }
 
 /**
- * @brief Create a square fill with a certain color.
+ * @brief Create a rectangle fill with a certain color.
 */
-t_mlxx_img *square(t_ctx *ctx, int color)
+t_mlxx_img	*mlxx_new_rect(t_ctx *ctx, int width, int height, int color)
 {
 	t_mlxx_img			*img;
 	t_mlxx_data_addr	addr;
 	int					i;
 	int					j;
 
-
-	img = mlxx_new_img(ctx->mlx, 64, 64);
-	addr.address = mlx_get_data_addr(img->img, &addr.pixel_bits, &addr.size_line, &addr.endian);
+	img = mlxx_new_img(ctx->mlx, width, height);
+	addr.address = mlx_get_data_addr(img->img, &addr.pixel_bits,
+			&addr.size_line, &addr.endian);
 	j = -1;
-	while (++j < 64)
+	while (++j < height)
 	{
 		i = -1;
-		while (++i < 64)
+		while (++i < width)
 		{
 			addr.pixel = (j * addr.size_line) + (i * 4);
 			addr.address[addr.pixel + 0] = cub_get_b(color);
@@ -88,7 +88,7 @@ void	draw_map(t_ctx *ctx)
 	int			y;
 	int			square_size;
 	t_square	square;
-	
+
 	y = -1;
 	square_size = 64;
 	while (++y < ctx->map_height)

@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/08 11:45:47 by maliew           ###   ########.fr       */
+/*   Updated: 2023/01/08 16:48:39 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "./cub3d <map.cub>\n");
 		return (0);
 	}
-	cub_init_ctx(&ctx);
 	ctx.mlx = mlx_init();
 	ctx.win = mlx_new_window(ctx.mlx, 1024, 512, "cub3d");
+	cub_init_ctx(&ctx);
 	if (cub_parse_map_file(&ctx, argv[1]))
 	{
 		ft_dprintf(2, "Error\n");
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 			ft_printf("%c", ctx.map[i][j]);
 		ft_printf("\n");
 	}
+	generate_map_image(&ctx);
 	// ft_printf("%d %d\n", ctx.map_width, ctx.map_height);
 	// ft_printf("%X %X\n", ctx.floor, ctx.ceiling);
 	// ft_printf("%p %p %p %p\n", ctx.north, ctx.south, ctx.east, ctx.west);
