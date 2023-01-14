@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:26:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/08 21:36:32 by maliew           ###   ########.fr       */
+/*   Updated: 2023/01/13 20:47:47 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,15 @@ void	move_player_strafe(t_ctx *ctx)
 		temp_angle = ctx->player->angle - PI / 2;
 		if (temp_angle < 0)
 			temp_angle += 2 * PI;
-		if (strchr("0NSEW",
-				ctx->map[(int)((ctx->player->y + sin(temp_angle) * 2) / 64)]
-			[(int)((ctx->player->x + cos(temp_angle) * 2) / 64)]) != 0)
-		{
-			ctx->player->x += cos(temp_angle) * 2;
-			ctx->player->y += sin(temp_angle) * 2;
-		}
 	}
 	if (ctx->key.d)
 	{
 		temp_angle = ctx->player->angle + PI / 2;
 		if (temp_angle > 2 * PI)
 			temp_angle -= 2 * PI;
+	}
+	if ((ctx->key.a || ctx->key.d) && !(ctx->key.a && ctx->key.d))
+	{
 		if (strchr("0NSEW",
 				ctx->map[(int)((ctx->player->y + sin(temp_angle) * 2) / 64)]
 			[(int)((ctx->player->x + cos(temp_angle) * 2) / 64)]) != 0)
