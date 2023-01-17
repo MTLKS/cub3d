@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/08 16:48:39 by maliew           ###   ########.fr       */
+/*   Updated: 2023/01/17 21:05:04 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ int	main(int argc, char **argv)
 	// ft_printf("%d %d\n", ctx.map_width, ctx.map_height);
 	// ft_printf("%X %X\n", ctx.floor, ctx.ceiling);
 	// ft_printf("%p %p %p %p\n", ctx.north, ctx.south, ctx.east, ctx.west);
-	mlx_do_key_autorepeaton(ctx.mlx);
+	// mlx_do_key_autorepeaton(ctx.mlx);
 	mlx_loop_hook(ctx.mlx, render, &ctx);
-	mlx_hook(ctx.win, 2, 1L << 0, key_hook, &ctx);
+	mlx_hook(ctx.win, 2, 1L << 0, keydown_hook, &ctx);
+	mlx_hook(ctx.win, 3, 1L << 1, keyup_hook, &ctx);
+	mlx_hook(ctx.win, 6, 1L << 6, mouse_hook, &ctx);
 	mlx_loop(ctx.mlx);
 	return (0);
 }

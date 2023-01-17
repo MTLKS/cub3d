@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/08 18:06:03 by maliew           ###   ########.fr       */
+/*   Updated: 2023/01/17 21:05:32 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 
@@ -24,6 +24,7 @@
 #  define KEY_S 1
 #  define KEY_D 2
 #  define KEY_W 13
+#  define KEY_M 46
 #  define KEY_ESC 53
 #  define KEY_LEFT 123
 #  define KEY_RIGHT 124
@@ -34,6 +35,7 @@
 #  define KEY_S 's'
 #  define KEY_D 'd'
 #  define KEY_W 'w'
+#  define KEY_M 'm'
 #  define KEY_ESC 65307
 #  define KEY_LEFT 65363
 #  define KEY_RIGHT 65361
@@ -72,6 +74,17 @@ typedef struct s_mlxx_img
 	int		height;
 }	t_mlxx_img;
 
+typedef struct s_key
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+	int	mouse;
+}	t_key;
+
 typedef struct s_ctx
 {
 	void				*mlx;
@@ -92,6 +105,7 @@ typedef struct s_ctx
 	int					ceiling_parsed;
 	int					floor_parsed;
 	t_player			*player;
+	t_key				key;
 }	t_ctx;
 
 // Drawing structs
@@ -170,7 +184,9 @@ t_mlxx_img		*mlxx_new_rect(t_ctx *ctx, int width, int height, int color);
 int				loop_hook(t_ctx *ctx);
 
 // Hooks
-int				key_hook(int keycode, t_ctx *ctx);
+int				keydown_hook(int keycode, t_ctx *ctx);
+int				keyup_hook(int keycode, t_ctx *ctx);
+int				mouse_hook(int x, int y, t_ctx *ctx);
 int				render(t_ctx *ctx);
 
 // Drawing
@@ -187,5 +203,8 @@ void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float
 
 int				generate_map_image(t_ctx *ctx);
 int				generate_minimap_image(t_ctx *ctx);
+// Movement
+
+void			move_player(t_ctx *ctx);
 
 #endif
