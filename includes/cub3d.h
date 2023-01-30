@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/30 17:46:05 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:51:55 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_ray
 	float	dist;
 	float	deg;
 	float	shade;
+	char	side;
 }	t_ray;
 
 // Temporary struct for ray calculation

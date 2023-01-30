@@ -6,11 +6,20 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:48:56 by echai             #+#    #+#             */
-/*   Updated: 2023/01/30 17:46:05 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 18:01:55 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// void	draw_texture()
+// {
+// 	int		y;
+// 	int		x;
+// 	int		*color;
+
+	
+// }
 
 void	draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg)
 {
@@ -49,7 +58,8 @@ void	draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg)
 		if (rad_to_deg(ray_angle) < 90 || rad_to_deg(ray_angle) > 270)
 			tx = 63 - tx;
 	}
-	color = get_texture(ctx, 'W');
+	color = get_texture(ctx, final_ray.side);
+	// color = get_texture(ctx, 'W');
 	while (++y < line_h)
 	{
 		x = -1;

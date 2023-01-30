@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:29:31 by echai             #+#    #+#             */
-/*   Updated: 2023/01/30 17:20:04 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 18:02:46 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	check_hray(t_ctx *ctx, t_ray *ray, t_temp t, int dof)
 	ray->x = ctx->player->x;
 	ray->y = ctx->player->y;
 	ray->dist = 1000000;
+	ray->deg = rad_to_deg(t.ray_angle);
 	if (t.ray_angle > PI)
 	{
 		t.ray_y = (((int)ctx->player->y >> 6) << 6) - 0.0001;
@@ -100,6 +101,7 @@ void	check_vray(t_ctx *ctx, t_ray *ray, t_temp t, int dof)
 	ray->x = ctx->player->x;
 	ray->y = ctx->player->y;
 	ray->dist = 1000000;
+	ray->deg = rad_to_deg(t.ray_angle);
 	if (t.ray_angle > PI / 2 && t.ray_angle < 3 * PI / 2)
 	{
 		t.ray_x = (((int)ctx->player->x >> 6) << 6) - 0.0001;
@@ -142,6 +144,10 @@ t_ray	get_ray(t_ctx *ctx, t_ray v_ray, t_ray h_ray)
 		line.x2 = v_ray.x;
 		line.y2 = v_ray.y;
 		v_ray.shade = 0.5;
+		if (v_ray.deg > 90 && v_ray.deg < 270)
+			v_ray.side = 'W';
+		else
+			v_ray.side = 'E';
 		draw_line(ctx, line, 0x00DD0000);
 		return (v_ray);
 	}
@@ -150,6 +156,10 @@ t_ray	get_ray(t_ctx *ctx, t_ray v_ray, t_ray h_ray)
 	line.x2 = h_ray.x;
 	line.y2 = h_ray.y;
 	h_ray.shade = 1;
+	if (h_ray.deg > 0 && h_ray.deg < 180)
+		h_ray.side = 'N';
+	else
+		h_ray.side = 'S';
 	draw_line(ctx, line, 0x00880000);
 	return (h_ray);
 }
