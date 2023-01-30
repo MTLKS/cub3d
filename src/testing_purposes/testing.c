@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:59:24 by echai             #+#    #+#             */
-/*   Updated: 2023/01/04 15:59:27 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 16:06:57 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,3 +139,20 @@ void	draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float e
 		--dist;
 	}
 }
+
+// void	get_vertical_slice(t_ctx *ctx)
+// {
+// 	// We will just simply print something just for show
+// 	int y;
+// 	int x;
+// 	t_mlxx_img *img = ctx->north;
+// 	int *data = (int *)mlx_get_data_addr(img->img, &ctx->mlx_data->pixel_bits, &ctx->mlx_data->size_line, &ctx->mlx_data->endian);
+// 	y = -1;
+// 	while (++y < 64) {
+// 		x = -1;
+// 		while (++x < 64) {
+// 			if (x % 2 == 0)
+// 				put_pixel(ctx, x, y * 16, data[x + y * 64]);
+// 		}
+// 	}
+// }

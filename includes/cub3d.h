@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/04 16:49:23 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:40:53 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_ctx
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;
 	t_mlxx_img			*west;
+	// void				*test;
 	t_mlxx_data_addr	*mlx_data;
 	int					ceiling;
 	int					floor;
@@ -111,7 +112,7 @@ typedef struct s_ray
 	float	y;
 	float	dist;
 	float	deg;
-	float	color;
+	float	shade;
 }	t_ray;
 
 // Temporary struct for ray calculation
@@ -130,6 +131,7 @@ typedef struct s_temp
 int				cub_2darray_count_row(char **array);
 float			dist(float x1, float y1, float x2, float y2);
 float			deg_to_rad(float angle);
+float			rad_to_deg(float angle);
 float			deg_limit(float angle);
 float			rad_limit(float angle);
 
@@ -160,6 +162,8 @@ unsigned char	cub_get_g(int trgb);
 unsigned char	cub_get_b(int trgb);
 
 // Testing purposes
+int				*get_vertical_slice(t_ctx *ctx, char side);
+int				shade(int color, float shade);
 
 t_mlxx_img		*square(t_ctx *ctx, int color);
 int				loop_hook(t_ctx *ctx);

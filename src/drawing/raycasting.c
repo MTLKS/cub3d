@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:29:31 by echai             #+#    #+#             */
-/*   Updated: 2023/01/04 16:48:44 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:20:04 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ t_ray	get_ray(t_ctx *ctx, t_ray v_ray, t_ray h_ray)
 		line.y1 = ctx->player->y;
 		line.x2 = v_ray.x;
 		line.y2 = v_ray.y;
-		v_ray.color = 0x00DD0000;
+		v_ray.shade = 0.5;
 		draw_line(ctx, line, 0x00DD0000);
 		return (v_ray);
 	}
@@ -149,7 +149,7 @@ t_ray	get_ray(t_ctx *ctx, t_ray v_ray, t_ray h_ray)
 	line.y1 = ctx->player->y;
 	line.x2 = h_ray.x;
 	line.y2 = h_ray.y;
-	h_ray.color = 0x00880000;
+	h_ray.shade = 1;
 	draw_line(ctx, line, 0x00880000);
 	return (h_ray);
 }
