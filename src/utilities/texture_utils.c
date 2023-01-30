@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 11:13:20 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/30 17:46:06 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 18:36:56 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	*get_texture(t_ctx *ctx, char side)
 	int			bpp;
 	int			size;
 	int			endian;
-	
+
 	img = NULL;
 	if (side == 'N')
 		img = ctx->north;
@@ -46,7 +46,7 @@ int	shade(int color, float shade)
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	
+
 	t = (((unsigned char *)&color)[3]);
 	r = (((unsigned char *)&color)[2]);
 	g = (((unsigned char *)&color)[1]);
