@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 11:13:20 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/30 17:40:35 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:46:06 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param side 
  * @return int* 
  */
-int	*get_vertical_slice(t_ctx *ctx, char side)
+int	*get_texture(t_ctx *ctx, char side)
 {
 	t_mlxx_img	*img;
 	int			*data;

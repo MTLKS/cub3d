@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/30 17:40:53 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:46:05 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ unsigned char	cub_get_g(int trgb);
 unsigned char	cub_get_b(int trgb);
 
 // Testing purposes
-int				*get_vertical_slice(t_ctx *ctx, char side);
+int				*get_texture(t_ctx *ctx, char side);
 int				shade(int color, float shade);
 
 t_mlxx_img		*square(t_ctx *ctx, int color);

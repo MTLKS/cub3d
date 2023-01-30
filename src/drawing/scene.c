@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:48:56 by echai             #+#    #+#             */
-/*   Updated: 2023/01/30 17:41:04 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:46:05 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg)
 		if (rad_to_deg(ray_angle) < 90 || rad_to_deg(ray_angle) > 270)
 			tx = 63 - tx;
 	}
-	color = get_vertical_slice(ctx, 'W');
+	color = get_texture(ctx, 'W');
 	while (++y < line_h)
 	{
 		x = -1;
@@ -57,5 +57,4 @@ void	draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg)
 			put_pixel(ctx, (deg * 8 + 530) + x, (y + line_o), shade(color[(int)tx + ((int)ty * 64)], final_ray.shade));
 		ty += ty_step;
 	}
-	// x_offset = (x_offset + 8) % 64; 
 }
