@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/01/30 15:39:48 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/01 18:10:50 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	render(t_ctx *ctx)
 	ctx->mlx_data->address = mlx_get_data_addr(ctx->img->img,
 			&ctx->mlx_data->pixel_bits,
 			&ctx->mlx_data->size_line, &ctx->mlx_data->endian);
-	draw_map(ctx);
+	// draw_map(ctx);
 	cast_rays(ctx);
-	draw_player(ctx, 0x00FFFF00, 8);
+	// draw_player(ctx, 0x00FFFF00, 8);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img->img, 0, 0);
 	mlxx_destroy_img(ctx->mlx, ctx->img);
 	return (0);
