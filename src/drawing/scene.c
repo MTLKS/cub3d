@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:48:56 by echai             #+#    #+#             */
-/*   Updated: 2023/01/31 00:16:13 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/01 18:15:21 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	draw_texture(t_ctx *ctx, t_texture *texture, float deg)
 {
 	int		y;
-	int		x;
 	int		*color;
 	float	shades;
 
@@ -24,10 +23,8 @@ void	draw_texture(t_ctx *ctx, t_texture *texture, float deg)
 	shades = texture->shade;
 	while (++y < texture->line_h)
 	{
-		x = -1;
-		while (++x < 8)
-			put_pixel(ctx, (deg * 8 + 530) + x, (y + texture->line_o),
-				shade(color[(int)texture->x + ((int)texture->y * 64)], shades));
+		put_pixel(ctx, deg, (y + texture->line_o),
+			shade(color[(int)texture->x + ((int)texture->y * 64)], shades));
 		texture->y += texture->y_step;
 	}
 }
@@ -69,15 +66,15 @@ void	draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg)
 	t_texture	texture;
 
 	ray_dist = final_ray.dist * cos(rad_limit(ctx->player->angle - ray_angle));
-	line_h = (64 * 320) / ray_dist;
+	line_h = (64 * ctx->img->height) / ray_dist;
 	texture.y_step = 64.0 / line_h;
 	texture.y_offset = 0;
-	if (line_h > 320)
+	if (line_h > ctx->img->height)
 	{
-		texture.y_offset = (line_h - 320) / 2.0;
-		line_h = 320;
+		texture.y_offset = (line_h - ctx->img->height) / 2.0;
+		line_h = ctx->img->height;
 	}
-	line_o = 160 - line_h / 2;
+	line_o = (ctx->img->height / 2) - (line_h / 2);
 	get_texture_offset(ctx, &texture, final_ray, ray_angle);
 	texture.line_h = line_h;
 	texture.line_o = line_o;
