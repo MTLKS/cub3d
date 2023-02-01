@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:29:45 by echai             #+#    #+#             */
-/*   Updated: 2023/01/03 13:44:14 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:23:44 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@ float	dist(float x1, float y1, float x2, float y2)
 float	deg_to_rad(float angle)
 {
 	return (angle * PI / 180);
+}
+
+/**
+ * @brief Convert radians to degree
+ * 
+ * @param angle Angle in radians
+ * @return float 
+ */
+float	rad_to_deg(float angle)
+{
+	return (angle * 180 / PI);
 }
 
 /**

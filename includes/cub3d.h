@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/17 21:05:32 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:21:51 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_ctx
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;
 	t_mlxx_img			*west;
+	// void				*test;
 	t_mlxx_data_addr	*mlx_data;
 	int					ceiling;
 	int					floor;
@@ -130,8 +131,21 @@ typedef struct s_ray
 	float	y;
 	float	dist;
 	float	deg;
-	float	color;
+	float	shade;
+	char	side;
 }	t_ray;
+
+typedef struct s_texture
+{
+	int		*color;
+	float	shade;
+	float	y_offset;
+	float	y_step;
+	float	x;
+	float	y;
+	float	line_h;
+	float	line_o;
+}	t_texture;
 
 // Temporary struct for ray calculation
 typedef struct s_temp
@@ -149,6 +163,7 @@ typedef struct s_temp
 int				cub_2darray_count_row(char **array);
 float			dist(float x1, float y1, float x2, float y2);
 float			deg_to_rad(float angle);
+float			rad_to_deg(float angle);
 float			deg_limit(float angle);
 float			rad_limit(float angle);
 
@@ -179,6 +194,8 @@ unsigned char	cub_get_g(int trgb);
 unsigned char	cub_get_b(int trgb);
 
 // Testing purposes
+int				*get_texture(t_ctx *ctx, char side);
+int				shade(int color, float shade);
 
 t_mlxx_img		*mlxx_new_rect(t_ctx *ctx, int width, int height, int color);
 int				loop_hook(t_ctx *ctx);

@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 13:44:58 by echai             #+#    #+#             */
-/*   Updated: 2023/01/03 16:38:25 by echai            ###   ########.fr       */
+/*   Updated: 2023/01/30 18:39:48 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	put_pixel(t_ctx *ctx, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = ctx->mlx_data->address + 
-		(y * ctx->mlx_data->size_line + x * (ctx->mlx_data->pixel_bits / 8));
+	dst = ctx->mlx_data->address
+		+ (y * ctx->mlx_data->size_line + x * (ctx->mlx_data->pixel_bits / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -73,7 +73,12 @@ void	draw_square(t_ctx *ctx, t_square square, int color)
 	{
 		j = -1;
 		while (++j < square.size)
-			put_pixel(ctx, square.x + j, square.y + i, color);
+		{
+			if (i == 0 || j == 0 || i == square.size || j == square.size)
+				put_pixel(ctx, square.x + j, square.y + i, 0x00000000);
+			else
+				put_pixel(ctx, square.x + j, square.y + i, color);
+		}
 	}
 }
 

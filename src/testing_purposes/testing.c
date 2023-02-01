@@ -6,46 +6,11 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:59:24 by echai             #+#    #+#             */
-/*   Updated: 2023/01/08 18:06:34 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:21:39 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int	key_hook(int keycode, t_ctx *ctx)
-// {
-// 	(void)ctx;
-// 	if (keycode == KEY_ESC)
-// 	{
-// 		ft_printf("ESC pressed.\n");
-// 		system("leaks -q cub3d");
-// 		exit(0);
-// 	}
-// 	return (0);
-// }
-
-// int	loop_hook(t_ctx *ctx)
-// {
-// 	t_mlxx_img	*ceiling;
-// 	t_mlxx_img	*floor;
-// 	t_mlxx_img	*buffer;
-
-// 	buffer = mlxx_new_img(ctx->mlx, 384, 64);
-// 	if (ctx->north)
-// 		mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->north->img, 0, 0);
-// 	if (ctx->south)
-// 		mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->south->img, 64, 0);
-// 	if (ctx->east)
-// 		mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->east->img, 128, 0);
-// 	if (ctx->west)
-// 		mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->west->img, 192, 0);
-// 	ceiling = square(ctx, ctx->ceiling);
-// 	mlx_put_image_to_window(ctx->mlx, ctx->win, ceiling->img, 256, 0);
-// 	floor = square(ctx, ctx->floor);
-// 	mlx_put_image_to_window(ctx->mlx, ctx->win, floor->img, 320, 0);
-// 	(void)buffer;
-// 	return (0);
-// }
 
 /**
  * @brief Create a rectangle fill with a certain color.
@@ -104,38 +69,5 @@ void	draw_map(t_ctx *ctx)
 			else
 				draw_square(ctx, square, 0x00000000);
 		}
-	}
-}
-
-/**
- * @brief Draws a THICC line from point A to point B
- * 
- * @param ctx 
- * @param startX x1
- * @param startY y1
- * @param endX x2
- * @param endY y2
- * @param color Color to draw the line in
- */
-void	draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color)
-{
-	float	delta_x;
-	float	delta_y;
-	int		dist;
-	int		i;
-
-	delta_x = endX - startX;
-	delta_y = endY - startY;
-	dist = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-	delta_x /= dist;
-	delta_y /= dist;
-	while (dist)
-	{
-		i = -1;
-		while (++i < 8)
-			put_pixel(ctx, startX + i, startY, color);
-		startX += delta_x;
-		startY += delta_y;
-		--dist;
 	}
 }

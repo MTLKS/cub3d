@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/17 21:05:04 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:22:08 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Error\n");
 		exit(1);
 	}
-	for (int i = 0; i < ctx.map_height; i++)
-	{
-		for (int j = 0; j < ctx.map_width; j++)
-			ft_printf("%c", ctx.map[i][j]);
-		ft_printf("\n");
-	}
+	// for (int i = 0; i < ctx.map_height; i++)
+	// {
+	// 	for (int j = 0; j < ctx.map_width; j++)
+	// 		ft_printf("%c", ctx.map[i][j]);
+	// 	ft_printf("\n");
+	// }
 	generate_map_image(&ctx);
 	// ft_printf("%d %d\n", ctx.map_width, ctx.map_height);
 	// ft_printf("%X %X\n", ctx.floor, ctx.ceiling);
