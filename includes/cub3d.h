@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/01 11:21:51 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/01 18:51:48 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_ctx
 	t_mlxx_img			*west;
 	// void				*test;
 	t_mlxx_data_addr	*mlx_data;
+	int					prev_ray;
 	int					ceiling;
 	int					floor;
 	int					ceiling_parsed;
