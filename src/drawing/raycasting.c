@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:29:31 by echai             #+#    #+#             */
-/*   Updated: 2023/02/01 19:44:55 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/01 21:29:32 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,9 +184,9 @@ void	cast_rays(t_ctx *ctx)
 	while (++ray < rays)
 	{
 		temp.tan_multip = -1 / tan(temp.ray_angle);
-		check_hray(ctx, &h_ray, temp, 8);
+		check_hray(ctx, &h_ray, temp, 24);
 		temp.tan_multip = -tan(temp.ray_angle);
-		check_vray(ctx, &v_ray, temp, 8);
+		check_vray(ctx, &v_ray, temp, 24);
 		final_ray = get_ray(ctx, v_ray, h_ray);
 		draw_scene(ctx, final_ray, temp.ray_angle, ray);
 		temp.ray_angle = rad_limit(temp.ray_angle + deg_to_rad(angle));
