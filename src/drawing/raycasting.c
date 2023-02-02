@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:29:31 by echai             #+#    #+#             */
-/*   Updated: 2023/02/01 18:51:45 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/01 23:38:57 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	find_ray_end(t_ctx *ctx, t_temp temp, t_ray *ray, int dof)
 	{
 		map_x = (int)(temp.ray_x) >> 6;
 		map_y = (int)(temp.ray_y) >> 6;
-		pos = map_y * 8 + map_x;
-		if (pos > 0 && pos < 64 && ctx->map[pos / 8][pos % 8] == '1')
+		pos = map_y * ctx->map_width + map_x;
+		if (pos > 0 && pos < (ctx->map_height * ctx->map_width) && ctx->map[pos / ctx->map_width][pos % ctx->map_width] == '1')
 		{
 			ray->x = temp.ray_x;
 			ray->y = temp.ray_y;
@@ -166,7 +166,7 @@ void	cast_rays(t_ctx *ctx)
 	t_temp	temp;
 
 	int	rays = ctx->img->width;
-	int half = rays/2;
+	int half = rays / 2;
 	float angle = 60.0 / (float)rays;
 
 	temp.ray_angle = rad_limit(ctx->player->angle - deg_to_rad(half * angle));
@@ -174,9 +174,9 @@ void	cast_rays(t_ctx *ctx)
 	while (++ray < rays)
 	{
 		temp.tan_multip = -1 / tan(temp.ray_angle);
-		check_hray(ctx, &h_ray, temp, 8);
+		check_hray(ctx, &h_ray, temp, 24);
 		temp.tan_multip = -tan(temp.ray_angle);
-		check_vray(ctx, &v_ray, temp, 8);
+		check_vray(ctx, &v_ray, temp, 24);
 		final_ray = get_ray(ctx, v_ray, h_ray);
 		draw_scene(ctx, final_ray, temp.ray_angle, ray);
 		temp.ray_angle = rad_limit(temp.ray_angle + deg_to_rad(angle));

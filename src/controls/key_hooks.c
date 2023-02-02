@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:40:48 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/08 21:20:11 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/02 21:46:09 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static void	toggle_mouse(t_ctx *ctx)
 {
 	if (ctx->key.mouse)
 	{
-		mlx_mouse_show();
+		mlx_mouse_show(ctx->mlx, ctx->win);
 		ctx->key.mouse = 0;
 	}
 	else
 	{
-		mlx_mouse_hide();
-		mlx_mouse_move(ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		mlx_mouse_hide(ctx->mlx, ctx->win);
+		mlx_mouse_move(ctx->mlx, ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 		ctx->key.mouse = 1;
 	}
 }
@@ -41,6 +41,8 @@ int	keydown_hook(int keycode, t_ctx *ctx)
 		ctx->key.left = 1;
 	else if (keycode == KEY_RIGHT)
 		ctx->key.right = 1;
+	else if (keycode == KEY_SHIFT)
+		ctx->key.shift = 2;
 	if (keycode == KEY_ESC)
 	{
 		ft_printf("ESC pressed.\n"); // Change to quit and free later
@@ -66,6 +68,8 @@ int	keyup_hook(int keycode, t_ctx *ctx)
 		ctx->key.right = 0;
 	else if (keycode == KEY_M)
 		toggle_mouse(ctx);
+	else if (keycode == KEY_SHIFT)
+		ctx->key.shift = 1;
 	return (keycode);
 }
 
@@ -80,7 +84,7 @@ int	mouse_hook(int x, int y, t_ctx *ctx)
 			ctx->player->angle += 2 * PI;
 		if (ctx->player->angle > 2 * PI)
 			ctx->player->angle -= 2 * PI;
-		mlx_mouse_move(ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		mlx_mouse_move(ctx->mlx, ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	}
 	return (0);
 }

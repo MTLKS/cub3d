@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/01 18:51:48 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/02 21:46:03 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "../mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
+
+# ifdef __APPLE__
+#  include "../mlx/mlx.h"
+# else
+#  include "../mlx_linux/mlx.h"
+# endif
 
 // Key definition
 # ifdef __APPLE__
@@ -37,10 +42,11 @@
 #  define KEY_W 'w'
 #  define KEY_M 'm'
 #  define KEY_ESC 65307
-#  define KEY_LEFT 65363
-#  define KEY_RIGHT 65361
+#  define KEY_LEFT 65361
+#  define KEY_RIGHT 65363
 #  define KEY_DOWN 65362
 #  define KEY_UP 65364
+#  define KEY_SHIFT 65505
 # endif
 
 # define PI 3.141592654
@@ -82,6 +88,7 @@ typedef struct s_key
 	int	d;
 	int	left;
 	int	right;
+	int	shift;
 	int	mouse;
 }	t_key;
 
