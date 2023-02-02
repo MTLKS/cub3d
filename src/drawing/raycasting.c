@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:29:31 by echai             #+#    #+#             */
-/*   Updated: 2023/02/01 23:38:57 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/02 22:05:49 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,9 +146,9 @@ t_ray	get_ray(t_ctx *ctx, t_ray v_ray, t_ray h_ray)
 	}
 	ctx->prev_ray = 0;
 	h_ray.shade = 1;
-	h_ray.side = 'S';
+	h_ray.side = 'N';
 	if (h_ray.deg > 0 && h_ray.deg < 180)
-		h_ray.side = 'N';
+		h_ray.side = 'S';
 	return (h_ray);
 }
 
@@ -167,7 +167,7 @@ void	cast_rays(t_ctx *ctx)
 
 	int	rays = ctx->img->width;
 	int half = rays / 2;
-	float angle = 60.0 / (float)rays;
+	float angle = 60 / (float)rays;
 
 	temp.ray_angle = rad_limit(ctx->player->angle - deg_to_rad(half * angle));
 	ray = -1;
