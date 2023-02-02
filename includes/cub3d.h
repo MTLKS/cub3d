@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/02 21:46:03 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/02 22:52:04 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ void			draw_map(t_ctx *ctx);
 void			cast_rays(t_ctx *ctx);
 void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg);
 void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
+void			set_background_color(t_ctx *ctx);
 
 // Minimap
 

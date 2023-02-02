@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:21:40 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/26 21:30:38 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/02 22:50:27 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ int	generate_minimap_image(t_ctx *ctx)
 	mlxx_copy_image(ctx->minimap_image, square, SCREEN_HEIGHT / 8 - 1,
 		SCREEN_HEIGHT / 8 - 1);
 	mlxx_destroy_img(ctx->mlx, square);
+	mlxx_copy_image(ctx->img, ctx->minimap_image, 0, 0);
+	mlxx_destroy_img(ctx->mlx, ctx->minimap_image);
 	return (0);
 }
