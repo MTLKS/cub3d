@@ -6,11 +6,29 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/02 17:29:50 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/02 22:35:38 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	cub_set_player_position(t_ctx *ctx, int row, int col, char dir)
+{
+	if (ctx->player->x != 0 && ctx->player->y != 0)
+		return (1);
+	ctx->player->x = col * 64 + 32;
+	ctx->player->y = row * 64 + 32;
+	if (dir == 'E')
+		ctx->player->angle = 0;
+	else if (dir == 'S')
+		ctx->player->angle = 90;
+	else if (dir == 'W')
+		ctx->player->angle = 180;
+	else if (dir == 'N')
+		ctx->player->angle = 270;
+	ctx->player->angle = ctx->player->angle * PI / 180;
+	return (0);
+}
 
 /**
  * @brief If the tile is a floor tile, checks 8 surrounding tiles
@@ -67,6 +85,9 @@ static int	cub_check_map_array(t_ctx *ctx)
 			if (ft_strchr(" 01NSEWD", ctx->map[i][j]) == 0)
 				return (1);
 			if (cub_check_surrounding_tiles(ctx, i, j))
+				return (1);
+			if (ft_strchr("NSEW", ctx->map[i][j]) != 0 && ctx->map[i][j] &&
+				cub_set_player_position(ctx, i, j, ctx->map[i][j]))
 				return (1);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/01 18:52:38 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/02 22:32:40 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->player->angle = 45 * PI / 180;
 	ctx->player->delta_x = cos(ctx->player->angle) * 2;
 	ctx->player->delta_y = sin(ctx->player->angle) * 2;
-	ctx->player->x = 300;
-	ctx->player->y = 300;
+	ctx->player->x = 0;
+	ctx->player->y = 0;
 	ctx->key.w = 0;
 	ctx->key.a = 0;
 	ctx->key.s = 0;
