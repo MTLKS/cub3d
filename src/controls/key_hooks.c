@@ -6,23 +6,28 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:40:48 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/02 21:46:09 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 18:14:51 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Toggles between mouse show and mouse hide.
+ * 
+ * @param ctx Context struct
+*/
 static void	toggle_mouse(t_ctx *ctx)
 {
 	if (ctx->key.mouse)
 	{
-		mlx_mouse_show(ctx->mlx, ctx->win);
+		mlx_mouse_show();
 		ctx->key.mouse = 0;
 	}
 	else
 	{
-		mlx_mouse_hide(ctx->mlx, ctx->win);
-		mlx_mouse_move(ctx->mlx, ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		mlx_mouse_hide();
+		mlx_mouse_move(ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 		ctx->key.mouse = 1;
 	}
 }
@@ -84,7 +89,7 @@ int	mouse_hook(int x, int y, t_ctx *ctx)
 			ctx->player->angle += 2 * PI;
 		if (ctx->player->angle > 2 * PI)
 			ctx->player->angle -= 2 * PI;
-		mlx_mouse_move(ctx->mlx, ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		mlx_mouse_move(ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	}
 	return (0);
 }

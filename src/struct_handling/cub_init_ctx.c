@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 10:17:08 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 13:38:44 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->key.left = 0;
 	ctx->key.right = 0;
 	ctx->key.mouse = 0;
+	ctx->key.shift = 1;
 }

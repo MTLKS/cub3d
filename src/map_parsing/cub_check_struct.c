@@ -6,12 +6,23 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/02 22:35:38 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 18:12:07 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Set player position according to map, returns 1 if player position
+ * is already set.
+ * 
+ * @param ctx Context struct
+ * @param row Row position
+ * @param col Column position
+ * @param dir Direction 'N', 'S', 'E', 'W'
+ * 
+ * @return 0 if set, 1 if position is already set
+*/
 static int	cub_set_player_position(t_ctx *ctx, int row, int col, char dir)
 {
 	if (ctx->player->x != 0 && ctx->player->y != 0)

@@ -6,12 +6,17 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 22:45:21 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 10:16:28 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 18:13:07 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Create background image from two colors specified in the map file.
+ * 
+ * @param ctx Context struct
+*/
 void	create_background_image(t_ctx *ctx)
 {
 	t_mlxx_img	*buffer;

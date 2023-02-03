@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 10:15:40 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 12:07:41 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 #  define KEY_RIGHT 124
 #  define KEY_DOWN 125
 #  define KEY_UP 126
+#  define KEY_SHIFT 257
 # else
 #  define KEY_A 'a'
 #  define KEY_S 's'
