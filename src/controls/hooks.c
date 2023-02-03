@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/02/02 22:52:23 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:15:20 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	render(t_ctx *ctx)
 			&ctx->mlx_data->size_line, &ctx->mlx_data->endian);
 	// draw_map(ctx);
 	move_player(ctx);
-	set_background_color(ctx);
+	mlxx_copy_image(ctx->img, ctx->background_image, 0, 0);
 	cast_rays(ctx);
 	generate_minimap_image(ctx);
 	// draw_player(ctx, 0x00FFFF00, 8);

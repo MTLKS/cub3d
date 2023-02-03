@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/01 11:22:08 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:14:41 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 	// 	ft_printf("\n");
 	// }
 	generate_map_image(&ctx);
+	create_background_image(&ctx);
 	// ft_printf("%d %d\n", ctx.map_width, ctx.map_height);
 	// ft_printf("%X %X\n", ctx.floor, ctx.ceiling);
 	// ft_printf("%p %p %p %p\n", ctx.north, ctx.south, ctx.east, ctx.west);

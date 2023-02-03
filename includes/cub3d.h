@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/02 22:52:04 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:15:40 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_ctx
 	t_mlxx_img			*img;
 	t_mlxx_img			*map_image;
 	t_mlxx_img			*minimap_image;
+	t_mlxx_img			*background_image;
 	t_mlxx_img			*north;
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;
@@ -223,7 +224,7 @@ void			draw_map(t_ctx *ctx);
 void			cast_rays(t_ctx *ctx);
 void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg);
 void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
-void			set_background_color(t_ctx *ctx);
+void			create_background_image(t_ctx *ctx);
 
 // Minimap
 

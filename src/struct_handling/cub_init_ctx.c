@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/02 22:32:40 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:17:08 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->map_height = 0;
 	ctx->map_image = NULL;
 	ctx->minimap_image = NULL;
+	ctx->background_image = NULL;
 	ctx->north = NULL;
 	ctx->south = NULL;
 	ctx->east = NULL;
