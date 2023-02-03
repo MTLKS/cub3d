@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:21:40 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/02 22:50:27 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:29:30 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	generate_minimap_image(t_ctx *ctx)
 	t_mlxx_img	*square;
 
 	size = SCREEN_HEIGHT / 4;
-	ctx->minimap_image = mlxx_new_img(ctx->mlx, size, size);
+	ctx->minimap_image = mlxx_new_rect(ctx, size, size, 0x00111111);
 	if (ctx->minimap_image == NULL)
 		return (1);
 	mlxx_copy_image(ctx->minimap_image, ctx->map_image,
