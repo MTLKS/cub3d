@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 10:15:40 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:46:16 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@
 # include <math.h>
 # include <stdio.h>
 
-# ifdef __APPLE__
-#  include "../mlx/mlx.h"
-# else
-#  include "../mlx_linux/mlx.h"
-# endif
+# include "../mlx/mlx.h"
 
 // Key definition
 # ifdef __APPLE__

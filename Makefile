@@ -6,8 +6,8 @@ LIBFT		= libft
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
-	MLXFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
-	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
+	MLXFLAGS	= -Lmlx -lmlx -L/usr/lib -I/usr/include -Imlx -lXext -lX11 -lm -lz
+	MLXFLAGS2	= -Lmlx -lmlx -L/usr/lib -I/usr/include -Imlx -lXext -lX11 -lm -lz
 endif
 ifeq ($(UNAME), Darwin)
 	MLXFLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit -I./mlx/
@@ -28,6 +28,7 @@ all:	$(NAME)
 bonus:	all
 
 $(NAME):	$(OBJS)
+			$(MAKE) -C ./mlx
 			$(MAKE) -C $(LIBFT)
 			$(CC) $(CFLAGS) $^ $(MLXFLAGS) -I$(INCLUDES) -L$(LIBFT) -lft -o $@
 
@@ -39,10 +40,12 @@ $(OBJ_PATH):
 
 clean:
 			$(MAKE) -C $(LIBFT) $@
+			$(MAKE) -C ./mlx $@
 			rm -rf $(OBJ_PATH)
 
 fclean:		clean
 			$(MAKE) -C $(LIBFT) $@
+			$(MAKE) -C $(LIBFT) clean
 			rm -f $(NAME) $(CHECKER)
 
 re:			fclean all
