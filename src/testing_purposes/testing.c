@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   testing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:59:24 by echai             #+#    #+#             */
-/*   Updated: 2023/01/30 18:39:10 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/02 22:43:38 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/**
- * @brief Create a square fill with a certain color.
-*/
-t_mlxx_img	*square(t_ctx *ctx, int color)
-{
-	t_mlxx_img			*img;
-	t_mlxx_data_addr	addr;
-	int					i;
-	int					j;
-
-	img = mlxx_new_img(ctx->mlx, 64, 64);
-	addr.address = mlx_get_data_addr(img->img, &addr.pixel_bits, &addr.size_line, &addr.endian);
-	j = -1;
-	while (++j < 64)
-	{
-		i = -1;
-		while (++i < 64)
-		{
-			addr.pixel = (j * addr.size_line) + (i * 4);
-			addr.address[addr.pixel + 0] = cub_get_b(color);
-			addr.address[addr.pixel + 1] = cub_get_g(color);
-			addr.address[addr.pixel + 2] = cub_get_r(color);
-			addr.address[addr.pixel + 3] = cub_get_t(color);
-		}
-	}
-	return (img);
-}
-
 
 /**
  * @brief Draws a temporary map

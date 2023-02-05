@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/01 19:44:27 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/05 10:22:37 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include <mlx.h>
 # include <math.h>
 # include <stdio.h>
+
+# ifdef __APPLE__
+#  include <mlx.h>
+# else
+#  include "../mlx_linux/mlx.h"
+# endif
 
 // Key definition
 # ifdef __APPLE__
@@ -24,25 +29,32 @@
 #  define KEY_S 1
 #  define KEY_D 2
 #  define KEY_W 13
+#  define KEY_M 46
 #  define KEY_ESC 53
 #  define KEY_LEFT 123
 #  define KEY_RIGHT 124
 #  define KEY_DOWN 125
 #  define KEY_UP 126
+#  define KEY_SHIFT 257
 # else
 #  define KEY_A 'a'
 #  define KEY_S 's'
 #  define KEY_D 'd'
 #  define KEY_W 'w'
+#  define KEY_M 'm'
 #  define KEY_ESC 65307
-#  define KEY_LEFT 65363
-#  define KEY_RIGHT 65361
+#  define KEY_LEFT 65361
+#  define KEY_RIGHT 65363
 #  define KEY_DOWN 65362
 #  define KEY_UP 65364
+#  define KEY_SHIFT 65505
 # endif
 
 # define PI 3.141592654
 # define DR 0.0174533
+
+# define SCREEN_WIDTH 1024
+# define SCREEN_HEIGHT 512
 
 typedef struct s_player
 {
@@ -69,6 +81,18 @@ typedef struct s_mlxx_img
 	int		height;
 }	t_mlxx_img;
 
+typedef struct s_key
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+	int	shift;
+	int	mouse;
+}	t_key;
+
 typedef struct s_ctx
 {
 	void				*mlx;
@@ -77,17 +101,22 @@ typedef struct s_ctx
 	int					map_width;
 	int					map_height;
 	t_mlxx_img			*img;
+	t_mlxx_img			*map_image;
+	t_mlxx_img			*minimap_image;
+	t_mlxx_img			*background_image;
 	t_mlxx_img			*north;
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;
 	t_mlxx_img			*west;
 	// void				*test;
 	t_mlxx_data_addr	*mlx_data;
+	int					prev_ray;
 	int					ceiling;
 	int					floor;
 	int					ceiling_parsed;
 	int					floor_parsed;
 	t_player			*player;
+	t_key				key;
 }	t_ctx;
 
 // Drawing structs
@@ -178,11 +207,13 @@ unsigned char	cub_get_b(int trgb);
 int				*get_texture(t_ctx *ctx, char side);
 int				shade(int color, float shade);
 
-t_mlxx_img		*square(t_ctx *ctx, int color);
+t_mlxx_img		*mlxx_new_rect(t_ctx *ctx, int width, int height, int color);
 int				loop_hook(t_ctx *ctx);
 
 // Hooks
-int				key_hook(int keycode, t_ctx *ctx);
+int				keydown_hook(int keycode, t_ctx *ctx);
+int				keyup_hook(int keycode, t_ctx *ctx);
+int				mouse_hook(int x, int y, t_ctx *ctx);
 int				render(t_ctx *ctx);
 
 // Drawing
@@ -194,5 +225,14 @@ void			draw_map(t_ctx *ctx);
 void			cast_rays(t_ctx *ctx);
 void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg);
 void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
+void			create_background_image(t_ctx *ctx);
+
+// Minimap
+
+int				generate_map_image(t_ctx *ctx);
+int				generate_minimap_image(t_ctx *ctx);
+// Movement
+
+void			move_player(t_ctx *ctx);
 
 #endif
