@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 18:12:07 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 11:57:28 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	cub_set_player_position(t_ctx *ctx, int row, int col, char dir)
 {
 	if (ctx->player->x != 0 && ctx->player->y != 0)
 		return (1);
-	ctx->player->x = col * 64 + 32;
-	ctx->player->y = row * 64 + 32;
+	ctx->player->x = col * 64 + 32 + 0.1;
+	ctx->player->y = row * 64 + 32 + 0.1;
 	if (dir == 'E')
 		ctx->player->angle = 0;
 	else if (dir == 'S')
