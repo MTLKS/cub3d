@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:29:31 by echai             #+#    #+#             */
-/*   Updated: 2023/02/06 16:29:17 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:47:03 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	find_ray_end(t_ctx *ctx, t_temp temp, t_ray *ray, int dof)
 		map_x = (int)(temp.ray_x) >> 6;
 		map_y = (int)(temp.ray_y) >> 6;
 		pos = map_y * ctx->map_width + map_x;
-		if (pos > 0 && pos < (ctx->map_height * ctx->map_width) && ctx->map[pos / ctx->map_width][pos % ctx->map_width] == '1')
+		if (ray_hit(ctx, pos, ray))
 		{
 			ray->x = temp.ray_x;
 			ray->y = temp.ray_y;
@@ -64,6 +64,7 @@ void	check_hray(t_ctx *ctx, t_ray *ray, t_temp t, int dof)
 	ray->y = ctx->player->y;
 	ray->dist = 1000000;
 	ray->deg = rad_to_deg(t.ray_angle);
+	ray->is_door = 0;
 	if (t.ray_angle > PI)
 	{
 		t.ray_y = (((int)ctx->player->y >> 6) << 6) - 0.0001;
@@ -102,6 +103,7 @@ void	check_vray(t_ctx *ctx, t_ray *ray, t_temp t, int dof)
 	ray->y = ctx->player->y;
 	ray->dist = 1000000;
 	ray->deg = rad_to_deg(t.ray_angle);
+	ray->is_door = 0;
 	if (t.ray_angle > PI / 2 && t.ray_angle < 3 * PI / 2)
 	{
 		t.ray_x = (((int)ctx->player->x >> 6) << 6) - 0.0001;
@@ -139,16 +141,12 @@ t_ray	get_ray(t_ctx *ctx, t_ray v_ray, t_ray h_ray)
 	{
 		ctx->prev_ray = 1;
 		v_ray.shade = 0.8;
-		v_ray.side = 'E';
-		if (v_ray.deg > 90 && v_ray.deg < 270)
-			v_ray.side = 'W';
+		set_v_texture(&v_ray);
 		return (v_ray);
 	}
 	ctx->prev_ray = 0;
 	h_ray.shade = 1;
-	h_ray.side = 'N';
-	if (h_ray.deg > 0 && h_ray.deg < 180)
-		h_ray.side = 'S';
+	set_h_texture(&h_ray);
 	return (h_ray);
 }
 

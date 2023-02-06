@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:25:33 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:42:50 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct s_ray
 	float	deg;
 	float	shade;
 	char	side;
+	int		is_door;
 }	t_ray;
 
 typedef struct s_texture
@@ -237,6 +238,9 @@ void			cast_rays(t_ctx *ctx);
 void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg);
 void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
 void			create_background_image(t_ctx *ctx);
+int				ray_hit(t_ctx *ctx, int pos, t_ray *ray);
+void			set_v_texture(t_ray *v_ray);
+void			set_h_texture(t_ray *h_ray);
 
 // Minimap
 

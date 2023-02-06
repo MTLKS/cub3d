@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:40:48 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:19:49 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:31:41 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ static void	toggle_mouse(t_ctx *ctx)
 	}
 }
 
+/**
+ * @brief Intermediary to handle door open key press
+ * 
+ * @param ctx 
+ */
 void	door_handler(t_ctx *ctx)
 {
 	int	pos_x;
