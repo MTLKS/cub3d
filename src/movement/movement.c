@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:26:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:19:05 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:22:54 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	toggle_door(t_ctx *ctx, int x, int y)
 {
 	if (ft_strchr("23",
-		ctx->map[((int)ctx->player->y) / 64][((int)ctx->player->x) / 64]) != 0)
-			return ;
+			ctx->map[((int)ctx->player->y) / 64]
+			[((int)ctx->player->x) / 64]) != 0)
+		return ;
 	if (ft_strchr("2", ctx->map[y][x]) != 0)
 		ctx->map[y][x] = '3';
 	else if (ft_strchr("3", ctx->map[y][x]) != 0)

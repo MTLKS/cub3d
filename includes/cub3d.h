@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:06:54 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:25:33 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,14 @@ typedef struct s_key
 	int	shift;
 	int	mouse;
 }	t_key;
+
+typedef struct s_raycasting
+{
+	int		i;
+	int		rays;
+	int		mid;
+	float	angle;
+}	t_raycasting;
 
 typedef struct s_ctx
 {
