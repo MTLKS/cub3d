@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 18:40:18 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 21:32:58 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Error\n");
 		exit(1);
 	}
+	ctx.action_image = mlxx_xpm_file_to_img(ctx.mlx, "assets/action.xpm");
 	generate_map_image(&ctx);
 	create_background_image(&ctx);
 	load_animation(&ctx);

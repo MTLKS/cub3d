@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:40:48 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 18:43:56 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 20:55:29 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ int	keyup_hook(int keycode, t_ctx *ctx)
 		ctx->key.left = 0;
 	else if (keycode == KEY_RIGHT)
 		ctx->key.right = 0;
+	else if (keycode == KEY_E)
+	{
+		door_handler(ctx);
+		ctx->anim_frame = 0;
+	}
 	else if (keycode == KEY_M)
 		toggle_mouse(ctx);
 	else if (keycode == KEY_SHIFT)

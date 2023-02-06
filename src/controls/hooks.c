@@ -6,11 +6,25 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/02/06 18:44:28 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 21:31:50 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	show_action(t_ctx *ctx)
+{
+	int	pos_x;
+	int	pos_y;
+
+	pos_x = (int)(ctx->player->x + ctx->player->delta_x * 24) / 64;
+	pos_y = (int)(ctx->player->y + ctx->player->delta_y * 24) / 64;
+	if (ft_strchr("23", ctx->map[pos_y][pos_x]) != 0 && !(ft_strchr("23",
+			ctx->map[((int)ctx->player->y) / 64]
+			[((int)ctx->player->x) / 64]) != 0))
+		mlxx_copy_image(ctx->img, ctx->action_image,
+			SCREEN_WIDTH - ctx->action_image->width, 0);
+}
 
 /**
  * @brief Renders the screen at each mlx loop
@@ -29,6 +43,7 @@ int	render(t_ctx *ctx)
 	cast_rays(ctx);
 	generate_minimap_image(ctx);
 	mlxx_copy_image(ctx->img, get_animation_frame(ctx), SCREEN_WIDTH - get_animation_frame(ctx)->width, SCREEN_HEIGHT - get_animation_frame(ctx)->height);
+	show_action(ctx);
 	// draw_player(ctx, 0x00FFFF00, 8);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img->img, 0, 0);
 	mlxx_destroy_img(ctx->mlx, ctx->img);

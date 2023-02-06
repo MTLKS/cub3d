@@ -1,0 +1,19 @@
+/* XPM */
+static char *arrow1675686381[] = {
+/* columns rows colors chars-per-pixel */
+"5 5 8 1 ",
+"  c black",
+". c #1A0000",
+"X c #7E0000",
+"o c #970000",
+"O c #B30000",
+"+ c #B80000",
+"@ c #D40000",
+"# c #EF0000",
+/* pixels */
+"  O  ",
+" X#X ",
+" @#@ ",
+"X###X",
+"+o.o+"
+};

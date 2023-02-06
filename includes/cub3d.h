@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 18:48:38 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 21:28:28 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_ctx
 	t_mlxx_img			*map_image;
 	t_mlxx_img			*minimap_image;
 	t_mlxx_img			*background_image;
+	t_mlxx_img			*action_image;
 	t_mlxx_img			*north;
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;
@@ -199,6 +200,7 @@ t_mlxx_img		*mlxx_xpm_file_to_img(void *mlx, char *path);
 void			mlxx_destroy_img(void *mlx, t_mlxx_img *img);
 void			mlxx_copy_image(t_mlxx_img *des, t_mlxx_img *src, int x, int y);
 void			mlxx_copy_pixel(t_mlxx_data_addr d, t_mlxx_data_addr s);
+void			mlxx_rotate_img(void *mlx, t_mlxx_img **img, int degree);
 
 // Struct handling
 
@@ -232,6 +234,8 @@ int				mouse_hook(int x, int y, t_ctx *ctx);
 int				mouse_up_hook(int button, int x, int y, t_ctx *ctx);
 int				interact_hook(int keycode, t_ctx *ctx);
 int				render(t_ctx *ctx);
+void			door_handler(t_ctx *ctx);
+
 
 // Drawing
 void			put_pixel(t_ctx *ctx, int x, int y, int color);
