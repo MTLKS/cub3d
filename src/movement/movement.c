@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:26:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 01:11:45 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 15:50:39 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 void	toggle_door(t_ctx *ctx, int x, int y)
 {
-	printf("Inside %d\n", ft_strchr("2", ctx->map[y][x]) != 0);
+	if (ft_strchr("23",
+		ctx->map[((int)ctx->player->y) / 64][((int)ctx->player->x) / 64]) != 0)
+			return ;
 	if (ft_strchr("2", ctx->map[y][x]) != 0)
-	{
-		printf("Open\n");
 		ctx->map[y][x] = '3';
-	}
 	else if (ft_strchr("3", ctx->map[y][x]) != 0)
-	{
-		printf("Close\n");
 		ctx->map[y][x] = '2';
-	}
 }
 
 /**
@@ -48,8 +44,6 @@ void	move_player_straight(t_ctx *ctx)
 		pos_x = ctx->player->x - ctx->player->delta_x * ctx->key.shift;
 		pos_y = ctx->player->y - ctx->player->delta_y * ctx->key.shift;
 	}
-	if (ctx->key.e && ft_strchr("23", ctx->map[(int)((ctx->player->y + ctx->player->delta_y) / 64)][(int)((ctx->player->x + ctx->player->delta_x) / 64)]) != 0)
-		toggle_door(ctx, ((int)(ctx->player->x + ctx->player->delta_x) / 64), ((int)(ctx->player->y + ctx->player->delta_y) / 64));
 	if ((ctx->key.w || ctx->key.s) && !(ctx->key.w && ctx->key.s))
 	{
 		if (ft_strchr("03NSEW",

@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 00:52:18 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 15:27:47 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ int				loop_hook(t_ctx *ctx);
 int				keydown_hook(int keycode, t_ctx *ctx);
 int				keyup_hook(int keycode, t_ctx *ctx);
 int				mouse_hook(int x, int y, t_ctx *ctx);
+int				interact_hook(int keycode, t_ctx *ctx);
 int				render(t_ctx *ctx);
 
 // Drawing
@@ -237,5 +238,6 @@ int				generate_minimap_image(t_ctx *ctx);
 // Movement
 
 void			move_player(t_ctx *ctx);
+void			toggle_door(t_ctx *ctx, int x, int y);
 
 #endif
