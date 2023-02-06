@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init_ctx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 13:38:44 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 00:59:36 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->key.a = 0;
 	ctx->key.s = 0;
 	ctx->key.d = 0;
+	ctx->key.e = 0;
 	ctx->key.left = 0;
 	ctx->key.right = 0;
 	ctx->key.mouse = 0;

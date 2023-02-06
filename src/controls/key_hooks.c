@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:40:48 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 18:14:51 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 00:52:36 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	toggle_mouse(t_ctx *ctx)
 
 int	keydown_hook(int keycode, t_ctx *ctx)
 {
+	printf("%d\n",keycode);
 	if (keycode == KEY_W)
 		ctx->key.w = 1;
 	else if (keycode == KEY_A)
@@ -42,6 +43,8 @@ int	keydown_hook(int keycode, t_ctx *ctx)
 		ctx->key.s = 1;
 	else if (keycode == KEY_D)
 		ctx->key.d = 1;
+	else if (keycode == KEY_E)
+		ctx->key.e = 1;
 	else if (keycode == KEY_LEFT)
 		ctx->key.left = 1;
 	else if (keycode == KEY_RIGHT)
@@ -67,6 +70,8 @@ int	keyup_hook(int keycode, t_ctx *ctx)
 		ctx->key.s = 0;
 	else if (keycode == KEY_D)
 		ctx->key.d = 0;
+	else if (keycode == KEY_E)
+		ctx->key.e = 0;
 	else if (keycode == KEY_LEFT)
 		ctx->key.left = 0;
 	else if (keycode == KEY_RIGHT)

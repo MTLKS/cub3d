@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/02/05 10:20:30 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 00:50:01 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,59 +34,3 @@ int	render(t_ctx *ctx)
 	mlxx_destroy_img(ctx->mlx, ctx->img);
 	return (0);
 }
-
-/**
- * @brief Detects keypress and performs action
- * 
- * @param keycode key pressed
- * @param ctx 
- * @return int 
- */
-// int	key_hook(int keycode, t_ctx *ctx)
-// {
-// 	if (keycode == KEY_W)
-// 	{
-// 		ctx->player->x += ctx->player->delta_x;
-// 		ctx->player->y += ctx->player->delta_y;
-// 	}
-// 	else if (keycode == KEY_A)
-// 	{
-// 		ctx->player->angle -= 0.1;
-// 		if (ctx->player->angle < 0)
-// 			ctx->player->angle += 2 * PI;
-// 		ctx->player->delta_x = cos(ctx->player->angle) * 5;
-// 		ctx->player->delta_y = sin(ctx->player->angle) * 5;
-// 	}
-// 	else if (keycode == KEY_S)
-// 	{
-// 		ctx->player->x -= ctx->player->delta_x;
-// 		ctx->player->y -= ctx->player->delta_y;
-// 	}
-// 	else if (keycode == KEY_D)
-// 	{
-// 		ctx->player->angle += 0.1;
-// 		if (ctx->player->angle > 2 * PI)
-// 			ctx->player->angle -= 2 * PI;
-// 		ctx->player->delta_x = cos(ctx->player->angle) * 5;
-// 		ctx->player->delta_y = sin(ctx->player->angle) * 5;
-// 	}
-// 	else if (keycode == KEY_ESC)
-// 	{
-// 		ft_printf("ESC pressed.\n"); // Change to quit and free later
-// 		system("leaks -q cub3d");
-// 		exit(0);
-// 	}
-// 	return (keycode);
-// }
-
-// /**
-//  * @brief Just an intermediary to close the game
-//  * 
-//  * @param ctx 
-//  * @return int 
-//  */
-// int	close_window(t_ctx *ctx)
-// {
-// 	end_game(ctx);
-// 	return (1);
-// }

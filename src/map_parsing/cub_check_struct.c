@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_check_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 18:12:07 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 00:57:00 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	cub_check_surrounding_tiles(t_ctx *ctx, int row, int col)
 			if (row + i >= 0 && row + i <= ctx->map_height && col + j >= 0
 				&& col + j <= ctx->map_width
 				&& (ctx->map[row + i][col + j] == 0
-				|| ft_strchr("01NSEWD", ctx->map[row + i][col + j]) == 0))
+				|| ft_strchr("012NSEWD", ctx->map[row + i][col + j]) == 0))
 				return (1);
 		}
 	}
@@ -93,7 +93,7 @@ static int	cub_check_map_array(t_ctx *ctx)
 		j = -1;
 		while (++j < ctx->map_width)
 		{
-			if (ft_strchr(" 01NSEWD", ctx->map[i][j]) == 0)
+			if (ft_strchr(" 012NSEWD", ctx->map[i][j]) == 0)
 				return (1);
 			if (cub_check_surrounding_tiles(ctx, i, j))
 				return (1);

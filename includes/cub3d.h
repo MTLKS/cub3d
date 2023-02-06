@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/05 10:22:37 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 00:52:18 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #  define KEY_S 1
 #  define KEY_D 2
 #  define KEY_W 13
+#  define KEY_E 14
 #  define KEY_M 46
 #  define KEY_ESC 53
 #  define KEY_LEFT 123
@@ -41,6 +42,7 @@
 #  define KEY_S 's'
 #  define KEY_D 'd'
 #  define KEY_W 'w'
+#  define KEY_E 'e'
 #  define KEY_M 'm'
 #  define KEY_ESC 65307
 #  define KEY_LEFT 65361
@@ -87,6 +89,7 @@ typedef struct s_key
 	int	a;
 	int	s;
 	int	d;
+	int	e;
 	int	left;
 	int	right;
 	int	shift;

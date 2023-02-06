@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:26:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/03 18:17:05 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/06 01:11:45 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	toggle_door(t_ctx *ctx, int x, int y)
+{
+	printf("Inside %d\n", ft_strchr("2", ctx->map[y][x]) != 0);
+	if (ft_strchr("2", ctx->map[y][x]) != 0)
+	{
+		printf("Open\n");
+		ctx->map[y][x] = '3';
+	}
+	else if (ft_strchr("3", ctx->map[y][x]) != 0)
+	{
+		printf("Close\n");
+		ctx->map[y][x] = '2';
+	}
+}
 
 /**
  * @brief Checks if 'w' or 's' keys are pressed and move player
@@ -33,9 +48,11 @@ void	move_player_straight(t_ctx *ctx)
 		pos_x = ctx->player->x - ctx->player->delta_x * ctx->key.shift;
 		pos_y = ctx->player->y - ctx->player->delta_y * ctx->key.shift;
 	}
+	if (ctx->key.e && ft_strchr("23", ctx->map[(int)((ctx->player->y + ctx->player->delta_y) / 64)][(int)((ctx->player->x + ctx->player->delta_x) / 64)]) != 0)
+		toggle_door(ctx, ((int)(ctx->player->x + ctx->player->delta_x) / 64), ((int)(ctx->player->y + ctx->player->delta_y) / 64));
 	if ((ctx->key.w || ctx->key.s) && !(ctx->key.w && ctx->key.s))
 	{
-		if (strchr("0NSEW",
+		if (ft_strchr("03NSEW",
 				ctx->map[(int)((pos_y) / 64)][(int)((pos_x) / 64)]) != 0)
 		{
 			ctx->player->x = pos_x;
@@ -68,7 +85,7 @@ void	move_player_strafe(t_ctx *ctx)
 	}
 	if ((ctx->key.a || ctx->key.d) && !(ctx->key.a && ctx->key.d))
 	{
-		if (strchr("0NSEW",
+		if (ft_strchr("0NSEW",
 				ctx->map[(int)((ctx->player->y + sin(temp_angle) * 2) / 64)]
 			[(int)((ctx->player->x + cos(temp_angle) * 2) / 64)]) != 0)
 		{

@@ -10,7 +10,7 @@ ifeq ($(UNAME), Linux)
 	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
 endif
 ifeq ($(UNAME), Darwin)
-	MLXFLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit -I./mlx/
+	MLXFLAGS	= -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -Imlx
 	MLXFLAGS2	=
 endif
 
