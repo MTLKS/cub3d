@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:45:21 by echai             #+#    #+#             */
-/*   Updated: 2023/02/06 17:09:51 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:58:01 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	ray_hit(t_ctx *ctx, int pos, t_ray *ray)
 {
 	int	hit;
 
-	hit = pos > 0 && pos < (ctx->map_height * ctx->map_width)
-		&& ft_strchr("12", ctx->map[pos / ctx->map_width]
-		[pos % ctx->map_width]) != 0;
+	hit = (pos > 0 && pos < (ctx->map_height * ctx->map_width)
+			&& ft_strchr("12", ctx->map[pos / ctx->map_width]
+			[pos % ctx->map_width]) != 0);
 	if (hit && ft_strchr("2", ctx->map[pos / ctx->map_width]
 			[pos % ctx->map_width]) != 0)
 		ray->is_door = 1;

@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:29:31 by echai             #+#    #+#             */
-/*   Updated: 2023/02/06 17:43:37 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 17:58:35 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	check_hray(t_ctx *ctx, t_ray *ray, t_temp t, int dof)
 	ray->y = ctx->player->y;
 	ray->dist = 1000000;
 	ray->deg = rad_to_deg(t.ray_angle);
-	ray->is_door = 0;
 	if (t.ray_angle > PI)
 	{
 		t.ray_y = (((int)ctx->player->y >> 6) << 6) - 0.0001;
@@ -103,7 +102,6 @@ void	check_vray(t_ctx *ctx, t_ray *ray, t_temp t, int dof)
 	ray->y = ctx->player->y;
 	ray->dist = 1000000;
 	ray->deg = rad_to_deg(t.ray_angle);
-	ray->is_door = 0;
 	if (t.ray_angle > PI / 2 && t.ray_angle < 3 * PI / 2)
 	{
 		t.ray_x = (((int)ctx->player->x >> 6) << 6) - 0.0001;
@@ -171,6 +169,8 @@ void	cast_rays(t_ctx *ctx)
 	rc.i = -1;
 	while (++rc.i < rc.rays)
 	{
+		h_ray.is_door = 0;
+		v_ray.is_door = 0;
 		temp.tan_multip = -1 / tan(temp.ray_angle);
 		check_hray(ctx, &h_ray, temp, 24);
 		temp.tan_multip = -tan(temp.ray_angle);
