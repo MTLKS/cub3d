@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:42:50 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 18:48:38 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <stdio.h>
 
 # ifdef __APPLE__
-#  include <mlx.h>
+#  include "../mlx/mlx.h"
+#  define ANIM_SPEED 5
 # else
 #  include "../mlx_linux/mlx.h"
+#  define ANIM_SPEED 50
 # endif
 
 // Key definition
@@ -127,6 +129,8 @@ typedef struct s_ctx
 	int					floor_parsed;
 	t_player			*player;
 	t_key				key;
+	t_mlxx_img			**anim;
+	int					anim_frame;
 }	t_ctx;
 
 // Drawing structs
@@ -225,6 +229,7 @@ int				loop_hook(t_ctx *ctx);
 int				keydown_hook(int keycode, t_ctx *ctx);
 int				keyup_hook(int keycode, t_ctx *ctx);
 int				mouse_hook(int x, int y, t_ctx *ctx);
+int				mouse_up_hook(int button, int x, int y, t_ctx *ctx);
 int				interact_hook(int keycode, t_ctx *ctx);
 int				render(t_ctx *ctx);
 
@@ -246,9 +251,15 @@ void			set_h_texture(t_ray *h_ray);
 
 int				generate_map_image(t_ctx *ctx);
 int				generate_minimap_image(t_ctx *ctx);
+
 // Movement
 
 void			move_player(t_ctx *ctx);
 void			toggle_door(t_ctx *ctx, int x, int y);
+
+// Animation
+
+int				load_animation(t_ctx *ctx);
+t_mlxx_img		*get_animation_frame(t_ctx *ctx);
 
 #endif

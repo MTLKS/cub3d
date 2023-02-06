@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:40:48 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:31:41 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 18:43:56 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,6 @@ static void	toggle_mouse(t_ctx *ctx)
 	}
 }
 
-/**
- * @brief Intermediary to handle door open key press
- * 
- * @param ctx 
- */
-void	door_handler(t_ctx *ctx)
-{
-	int	pos_x;
-	int	pos_y;
-
-	pos_x = (int)(ctx->player->x + ctx->player->delta_x * 24) / 64;
-	pos_y = (int)(ctx->player->y + ctx->player->delta_y * 24) / 64;
-	if (ft_strchr("23", ctx->map[pos_y][pos_x]) != 0)
-		toggle_door(ctx, pos_x, pos_y);
-}
-
 int	keydown_hook(int keycode, t_ctx *ctx)
 {
 	if (keycode == KEY_W)
@@ -58,8 +42,6 @@ int	keydown_hook(int keycode, t_ctx *ctx)
 		ctx->key.s = 1;
 	else if (keycode == KEY_D)
 		ctx->key.d = 1;
-	else if (keycode == KEY_E)
-		door_handler(ctx);
 	else if (keycode == KEY_LEFT)
 		ctx->key.left = 1;
 	else if (keycode == KEY_RIGHT)
