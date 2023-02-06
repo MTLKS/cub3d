@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 00:59:36 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:19:19 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->south = NULL;
 	ctx->east = NULL;
 	ctx->west = NULL;
+	ctx->door = NULL;
 	ctx->floor = 0;
 	ctx->ceiling = 0;
 	ctx->floor_parsed = 0;
@@ -41,7 +42,6 @@ void	cub_init_ctx(t_ctx *ctx)
 	ctx->key.a = 0;
 	ctx->key.s = 0;
 	ctx->key.d = 0;
-	ctx->key.e = 0;
 	ctx->key.left = 0;
 	ctx->key.right = 0;
 	ctx->key.mouse = 0;

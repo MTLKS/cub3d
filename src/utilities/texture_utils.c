@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 11:13:20 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/30 18:36:56 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:18:44 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	*get_texture(t_ctx *ctx, char side)
 		img = ctx->east;
 	else if (side == 'W')
 		img = ctx->west;
+	else if (side == 'D')
+		img = ctx->door;
 	data = (int *)mlx_get_data_addr(img->img, &bpp, &size, &endian);
 	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 00:57:00 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:19:20 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ int	cub_check_struct(t_ctx *ctx)
 {
 	if (ctx->map_width == 0 || ctx->map_height == 0 || ctx->north == NULL
 		|| ctx->south == NULL || ctx->east == NULL || ctx->west == NULL
-		|| ctx->ceiling_parsed == 0 || ctx->floor_parsed == 0)
+		|| ctx->door == NULL || ctx->ceiling_parsed == 0
+		|| ctx->floor_parsed == 0)
 		return (1);
 	if (cub_check_map_array(ctx))
 		return (1);

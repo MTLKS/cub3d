@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 13:59:03 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/30 16:16:21 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:20:57 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int	cub_store_element_img(t_ctx *ctx, char *id, char *path)
 		ctx->east = mlxx_xpm_file_to_img(ctx->mlx, path);
 	else if (ft_strncmp(id, "WE", 3) == 0 && ctx->west == NULL)
 		ctx->west = mlxx_xpm_file_to_img(ctx->mlx, path);
+	else if (ft_strncmp(id, "DO", 3) == 0 && ctx->door == NULL)
+		ctx->door = mlxx_xpm_file_to_img(ctx->mlx, path);
 	else
 		return (1);
 	return (0);
@@ -107,7 +109,7 @@ int	cub_parse_elements(t_ctx *ctx, t_list **buffer)
 
 	while ((*buffer)->next
 		&& !(ctx->north && ctx->south && ctx->east && ctx->west
-			&& ctx->floor_parsed && ctx->ceiling_parsed))
+			&& ctx->door && ctx->floor_parsed && ctx->ceiling_parsed))
 	{
 		line = (*buffer)->content;
 		if (*line != '\0' && cub_parse_element(ctx, line))

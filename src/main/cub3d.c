@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 15:29:32 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:07:02 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,8 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Error\n");
 		exit(1);
 	}
-	// for (int i = 0; i < ctx.map_height; i++)
-	// {
-	// 	for (int j = 0; j < ctx.map_width; j++)
-	// 		ft_printf("%c", ctx.map[i][j]);
-	// 	ft_printf("\n");
-	// }
 	generate_map_image(&ctx);
 	create_background_image(&ctx);
-	// ft_printf("%d %d\n", ctx.map_width, ctx.map_height);
-	// ft_printf("%X %X\n", ctx.floor, ctx.ceiling);
-	// ft_printf("%p %p %p %p\n", ctx.north, ctx.south, ctx.east, ctx.west);
-	// mlx_do_key_autorepeaton(ctx.mlx);
 	mlx_loop_hook(ctx.mlx, render, &ctx);
 	mlx_hook(ctx.win, 2, 1L << 0, keydown_hook, &ctx);
 	mlx_hook(ctx.win, 3, 1L << 1, keyup_hook, &ctx);

@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 15:27:47 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/06 16:06:54 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ typedef struct s_key
 	int	a;
 	int	s;
 	int	d;
-	int	e;
 	int	left;
 	int	right;
 	int	shift;
@@ -111,7 +110,7 @@ typedef struct s_ctx
 	t_mlxx_img			*south;
 	t_mlxx_img			*east;
 	t_mlxx_img			*west;
-	// void				*test;
+	t_mlxx_img			*door;
 	t_mlxx_data_addr	*mlx_data;
 	int					prev_ray;
 	int					ceiling;
