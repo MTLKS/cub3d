@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:43:20 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/02 17:12:18 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:39:28 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,24 @@ int	cub_2darray_count_row(char **array)
 	while (array[i])
 		i++;
 	return (i);
+}
+
+void	cub_free_2d_array(char **array, int row)
+{
+	int	i;
+
+	i = -1;
+	while (++i < row)
+		free(array[i]);
+	free(array);
+}
+
+void	cub_free_2d_nt_array(char **array)
+{
+	int	i;
+
+	i = -1;
+	while (array[++i])
+		free(array[i]);
+	free(array);
 }

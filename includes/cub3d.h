@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 21:28:28 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/07 19:01:56 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,8 @@ typedef struct s_temp
 // Utils
 
 int				cub_2darray_count_row(char **array);
+void			cub_free_2d_array(char **array, int row);
+void			cub_free_2d_nt_array(char **array);
 float			dist(float x1, float y1, float x2, float y2);
 float			deg_to_rad(float angle);
 float			rad_to_deg(float angle);
@@ -201,10 +203,14 @@ void			mlxx_destroy_img(void *mlx, t_mlxx_img *img);
 void			mlxx_copy_image(t_mlxx_img *des, t_mlxx_img *src, int x, int y);
 void			mlxx_copy_pixel(t_mlxx_data_addr d, t_mlxx_data_addr s);
 void			mlxx_rotate_img(void *mlx, t_mlxx_img **img, int degree);
+t_mlxx_img		*mlxx_new_rect(t_ctx *ctx, int width, int height, int color);
+int				*get_texture(t_ctx *ctx, char side);
+int				shade(int color, float shade);
 
 // Struct handling
 
-void			cub_init_ctx(t_ctx *ctx);
+int				cub_init_ctx(t_ctx *ctx);
+void			cub_free_and_exit(t_ctx *ctx);
 
 // Map parsing
 
@@ -220,14 +226,8 @@ unsigned char	cub_get_r(int trgb);
 unsigned char	cub_get_g(int trgb);
 unsigned char	cub_get_b(int trgb);
 
-// Testing purposes
-int				*get_texture(t_ctx *ctx, char side);
-int				shade(int color, float shade);
-
-t_mlxx_img		*mlxx_new_rect(t_ctx *ctx, int width, int height, int color);
-int				loop_hook(t_ctx *ctx);
-
 // Hooks
+
 int				keydown_hook(int keycode, t_ctx *ctx);
 int				keyup_hook(int keycode, t_ctx *ctx);
 int				mouse_hook(int x, int y, t_ctx *ctx);
@@ -236,16 +236,12 @@ int				interact_hook(int keycode, t_ctx *ctx);
 int				render(t_ctx *ctx);
 void			door_handler(t_ctx *ctx);
 
-
 // Drawing
+
 void			put_pixel(t_ctx *ctx, int x, int y, int color);
-void			draw_square(t_ctx *ctx, t_square square, int color);
-void			draw_line(t_ctx *ctx, t_line line, int color);
-void			draw_player(t_ctx *ctx, int color, int size);
-void			draw_map(t_ctx *ctx);
 void			cast_rays(t_ctx *ctx);
-void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle, int deg);
-void			draw_thick_line(t_ctx *ctx, float startX, float startY, float endX, float endY, int color);
+void			draw_scene(t_ctx *ctx, t_ray final_ray, float ray_angle,
+					int deg);
 void			create_background_image(t_ctx *ctx);
 int				ray_hit(t_ctx *ctx, int pos, t_ray *ray);
 void			set_v_texture(t_ray *v_ray);

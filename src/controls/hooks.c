@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/02/06 21:31:50 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:49:57 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int	render(t_ctx *ctx)
 	mlxx_copy_image(ctx->img, ctx->background_image, 0, 0);
 	cast_rays(ctx);
 	generate_minimap_image(ctx);
-	mlxx_copy_image(ctx->img, get_animation_frame(ctx), SCREEN_WIDTH - get_animation_frame(ctx)->width, SCREEN_HEIGHT - get_animation_frame(ctx)->height);
+	mlxx_copy_image(ctx->img, get_animation_frame(ctx),
+		SCREEN_WIDTH - get_animation_frame(ctx)->width,
+		SCREEN_HEIGHT - get_animation_frame(ctx)->height);
 	show_action(ctx);
-	// draw_player(ctx, 0x00FFFF00, 8);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img->img, 0, 0);
 	mlxx_destroy_img(ctx->mlx, ctx->img);
+	ctx->img = NULL;
 	return (0);
 }
 

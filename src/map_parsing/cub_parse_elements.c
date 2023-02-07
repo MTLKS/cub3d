@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse_elements.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 13:59:03 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:20:57 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/07 19:22:17 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,29 @@
 */
 static int	cub_store_element_color(t_ctx *ctx, char *id, char *color)
 {
+	int		status;
 	int		i;
 	char	**colors_split;
 	int		colors[3];
 
+	status = 0;
 	colors_split = ft_split(color, ',');
 	if (cub_2darray_count_row(colors_split) != 3)
-		return (1);
-	i = -1;
-	while (colors_split[++i])
-		colors[i] = ft_atoi(colors_split[i]);
-	if (ft_strncmp(id, "F", 2) == 0 && ctx->floor_parsed == 0)
-		ctx->floor = cub_create_trgb(0, colors[0], colors[1], colors[2]);
-	else if (ft_strncmp(id, "C", 2) == 0 && ctx->ceiling_parsed == 0)
-		ctx->ceiling = cub_create_trgb(0, colors[0], colors[1], colors[2]);
+		status = 1;
 	else
-		return (1);
-	return (0);
+	{
+		i = -1;
+		while (colors_split[++i])
+			colors[i] = ft_atoi(colors_split[i]);
+		if (ft_strncmp(id, "F", 2) == 0 && ctx->floor_parsed == 0)
+			ctx->floor = cub_create_trgb(0, colors[0], colors[1], colors[2]);
+		else if (ft_strncmp(id, "C", 2) == 0 && ctx->ceiling_parsed == 0)
+			ctx->ceiling = cub_create_trgb(0, colors[0], colors[1], colors[2]);
+		else
+			status = 1;
+		cub_free_2d_nt_array(colors_split);
+	}
+	return (status);
 }
 
 /**
@@ -90,6 +96,7 @@ static int	cub_parse_element(t_ctx *ctx, char *line)
 		ctx->floor_parsed = 1;
 	else if (ft_strncmp(array[0], "C", 2) == 0 && ctx->floor_parsed == 0)
 		ctx->ceiling_parsed = 1;
+	cub_free_2d_nt_array(array);
 	return (0);
 }
 
@@ -113,7 +120,10 @@ int	cub_parse_elements(t_ctx *ctx, t_list **buffer)
 	{
 		line = (*buffer)->content;
 		if (*line != '\0' && cub_parse_element(ctx, line))
+		{
+			ft_dprintf(2, "Error: unknown or missing element.\n");
 			return (1);
+		}
 		temp = *buffer;
 		*buffer = (*buffer)->next;
 		ft_lstdelone(temp, &free);

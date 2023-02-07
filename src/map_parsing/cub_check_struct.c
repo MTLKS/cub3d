@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 21:41:21 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/07 21:41:43 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,9 @@ int	cub_check_struct(t_ctx *ctx)
 		|| ctx->floor_parsed == 0)
 		return (1);
 	if (cub_check_map_array(ctx))
+	{
+		ft_dprintf(2, "Error: map problems.\n");
 		return (1);
+	}
 	return (0);
 }

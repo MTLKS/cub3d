@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:21:40 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 20:46:54 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:53:25 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,23 @@ int	generate_map_image(t_ctx *ctx)
 	size = 16;
 	squares = malloc(3 * sizeof(t_mlxx_img *));
 	squares[0] = mlxx_new_rect(ctx, size, size, 0x00111111);
+	if (squares[0] == NULL)
+		return (1);
 	squares[1] = mlxx_new_rect(ctx, size, size, 0x00FFFFFF);
+	if (squares[1] == NULL)
+		return (1);
 	squares[2] = mlxx_new_rect(ctx, size, size, 0x0077FF77);
+	if (squares[2] == NULL)
+		return (1);
 	ctx->map_image = mlxx_new_img(ctx->mlx, ctx->map_width * size,
 			ctx->map_height * size);
 	if (ctx->map_image == NULL)
 		return (1);
 	draw_map_image(ctx, squares, size);
+	mlxx_destroy_img(ctx->mlx, squares[0]);
+	mlxx_destroy_img(ctx->mlx, squares[1]);
+	mlxx_destroy_img(ctx->mlx, squares[2]);
+	free(squares);
 	return (0);
 }
 
@@ -75,5 +85,6 @@ int	generate_minimap_image(t_ctx *ctx)
 	mlxx_destroy_img(ctx->mlx, overlay);
 	mlxx_copy_image(ctx->img, ctx->minimap_image, 0, 0);
 	mlxx_destroy_img(ctx->mlx, ctx->minimap_image);
+	ctx->minimap_image = NULL;
 	return (0);
 }

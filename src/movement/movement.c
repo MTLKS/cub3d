@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:26:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 16:22:54 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/07 21:16:43 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	move_player_strafe(t_ctx *ctx)
 	}
 	if ((ctx->key.a || ctx->key.d) && !(ctx->key.a && ctx->key.d))
 	{
-		if (ft_strchr("0NSEW",
+		if (ft_strchr("03NSEW",
 				ctx->map[(int)((ctx->player->y + sin(temp_angle) * 2) / 64)]
 			[(int)((ctx->player->x + cos(temp_angle) * 2) / 64)]) != 0)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse_map_file.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:42:33 by maliew            #+#    #+#             */
-/*   Updated: 2023/01/03 15:44:31 by echai            ###   ########.fr       */
+/*   Updated: 2023/02/07 19:07:50 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	cub_open_map_fd(char *path)
 	free(temp);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (-1);
+		ft_dprintf(2, "Error: cannot open map file.\n");
 	return (fd);
 }
 
@@ -97,7 +97,7 @@ static int	cub_parse_struct(t_ctx *ctx, t_list **map_buffer)
  * @param ctx Context struct
  * @param path Path to .cub file
  * 
- * @return 0 if ok, 1 if error
+ * @return 0 if ok, >1 if error
 */
 int	cub_parse_map_file(t_ctx *ctx, char *path)
 {
@@ -112,7 +112,7 @@ int	cub_parse_map_file(t_ctx *ctx, char *path)
 	map_buffer = NULL;
 	buffer = get_next_line(fd);
 	if (buffer == NULL)
-		return (1);
+		return (ft_dprintf(2, "Error: empty map file.\n"));
 	while (buffer)
 	{
 		temp = ft_strtrim(buffer, "\n");

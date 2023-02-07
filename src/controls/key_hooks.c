@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:40:48 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/06 20:55:29 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:23:19 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ int	keydown_hook(int keycode, t_ctx *ctx)
 	else if (keycode == KEY_SHIFT)
 		ctx->key.shift = 2;
 	if (keycode == KEY_ESC)
-	{
-		ft_printf("ESC pressed.\n"); // Change to quit and free later
-		system("leaks -q cub3d");
-		exit(0);
-	}
+		cub_free_and_exit(ctx);
 	return (keycode);
 }
 
