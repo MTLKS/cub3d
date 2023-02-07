@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 21:41:43 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/07 22:26:43 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	cub_check_surrounding_tiles(t_ctx *ctx, int row, int col)
 	int	i;
 	int	j;
 
-	if (ctx->map[row][col] != '0')
+	if (ft_strchr("02NSEW", ctx->map[row][col]) == 0)
 		return (0);
 	i = -2;
 	while (++i < 2)
@@ -64,10 +64,12 @@ static int	cub_check_surrounding_tiles(t_ctx *ctx, int row, int col)
 		j = -2;
 		while (++j < 2)
 		{
-			if (row + i >= 0 && row + i <= ctx->map_height && col + j >= 0
-				&& col + j <= ctx->map_width
-				&& (ctx->map[row + i][col + j] == 0
-				|| ft_strchr("012NSEWD", ctx->map[row + i][col + j]) == 0))
+			if (row + i < 0 || row + i > ctx->map_height
+				|| (row + i >= 0 && row + i <= ctx->map_height
+					&& col + j >= 0
+					&& col + j <= ctx->map_width
+					&& (ctx->map[row + i][col + j] == 0
+					|| ft_strchr("012NSEW", ctx->map[row + i][col + j]) == 0)))
 				return (1);
 		}
 	}
@@ -93,7 +95,7 @@ static int	cub_check_map_array(t_ctx *ctx)
 		j = -1;
 		while (++j < ctx->map_width)
 		{
-			if (ft_strchr(" 012NSEWD", ctx->map[i][j]) == 0)
+			if (ft_strchr(" 012NSEW", ctx->map[i][j]) == 0)
 				return (1);
 			if (cub_check_surrounding_tiles(ctx, i, j))
 				return (1);
