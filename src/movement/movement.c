@@ -6,22 +6,27 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:26:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 21:16:43 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:38:10 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	toggle_door(t_ctx *ctx, int x, int y)
+void	check_and_move_player(t_ctx *ctx, float pos_x, float pos_y)
 {
-	if (ft_strchr("23",
-			ctx->map[((int)ctx->player->y) / 64]
-			[((int)ctx->player->x) / 64]) != 0)
+	if ((int)((pos_x) / 64) != (int)(ctx->player->x / 64)
+		&& (int)((pos_y) / 64) != (int)(ctx->player->y / 64)
+		&& (ft_strchr("03NSEW", ctx->map[(int)((pos_y) / 64)]
+			[(int)((ctx->player->x) / 64)]) == 0
+		&& ft_strchr("03NSEW", ctx->map[(int)((ctx->player->y) / 64)]
+			[(int)((pos_x) / 64)]) == 0))
 		return ;
-	if (ft_strchr("2", ctx->map[y][x]) != 0)
-		ctx->map[y][x] = '3';
-	else if (ft_strchr("3", ctx->map[y][x]) != 0)
-		ctx->map[y][x] = '2';
+	if (ft_strchr("03NSEW",
+			ctx->map[(int)((pos_y) / 64)][(int)((pos_x) / 64)]) != 0)
+	{
+		ctx->player->x = pos_x;
+		ctx->player->y = pos_y;
+	}
 }
 
 /**
@@ -46,14 +51,7 @@ void	move_player_straight(t_ctx *ctx)
 		pos_y = ctx->player->y - ctx->player->delta_y * ctx->key.shift;
 	}
 	if ((ctx->key.w || ctx->key.s) && !(ctx->key.w && ctx->key.s))
-	{
-		if (ft_strchr("03NSEW",
-				ctx->map[(int)((pos_y) / 64)][(int)((pos_x) / 64)]) != 0)
-		{
-			ctx->player->x = pos_x;
-			ctx->player->y = pos_y;
-		}
-	}
+		check_and_move_player(ctx, pos_x, pos_y);
 }
 
 /**
@@ -79,15 +77,8 @@ void	move_player_strafe(t_ctx *ctx)
 			temp_angle -= 2 * PI;
 	}
 	if ((ctx->key.a || ctx->key.d) && !(ctx->key.a && ctx->key.d))
-	{
-		if (ft_strchr("03NSEW",
-				ctx->map[(int)((ctx->player->y + sin(temp_angle) * 2) / 64)]
-			[(int)((ctx->player->x + cos(temp_angle) * 2) / 64)]) != 0)
-		{
-			ctx->player->x += cos(temp_angle) * 2;
-			ctx->player->y += sin(temp_angle) * 2;
-		}
-	}
+		check_and_move_player(ctx, (ctx->player->x + cos(temp_angle) * 2),
+			(ctx->player->y + sin(temp_angle) * 2));
 }
 
 /**

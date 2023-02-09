@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:42:33 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/09 18:07:47 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:09:11 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	cub_open_map_fd(char *path)
 	if (ft_strncmp(temp, ".cub", 4) != 0)
 	{
 		free(temp);
+		ft_dprintf(2, "Error: wrong extension.\n");
 		return (-1);
 	}
 	free(temp);

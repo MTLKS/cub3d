@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/02/07 18:49:57 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:12:53 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,16 @@ void	door_handler(t_ctx *ctx)
 
 	pos_x = (int)(ctx->player->x + ctx->player->delta_x * 24) / 64;
 	pos_y = (int)(ctx->player->y + ctx->player->delta_y * 24) / 64;
-	if (ft_strchr("23", ctx->map[pos_y][pos_x]) != 0)
-		toggle_door(ctx, pos_x, pos_y);
+	if (ft_strchr("23", ctx->map[pos_y][pos_x]) != 0 && !(ft_strchr("23",
+			ctx->map[((int)ctx->player->y) / 64]
+			[((int)ctx->player->x) / 64]) != 0))
+	{
+		if (ft_strchr("2", ctx->map[pos_y][pos_x]) != 0)
+			ctx->map[pos_y][pos_x] = '3';
+		else if (ft_strchr("3", ctx->map[pos_y][pos_x]) != 0)
+			ctx->map[pos_y][pos_x] = '2';
+	}
+
 }
 
 int	mouse_up_hook(int button, int x, int y, t_ctx *ctx)
@@ -73,7 +81,9 @@ int	mouse_up_hook(int button, int x, int y, t_ctx *ctx)
 	(void)x;
 	(void)y;
 	if (button == 1)
+	{
 		door_handler(ctx);
-	ctx->anim_frame = 0;
+		ctx->anim_frame = 0;
+	}
 	return (button);
 }

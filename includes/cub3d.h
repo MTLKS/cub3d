@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/09 17:43:15 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:13:29 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,6 @@ int				generate_minimap_image(t_ctx *ctx);
 // Movement
 
 void			move_player(t_ctx *ctx);
-void			toggle_door(t_ctx *ctx, int x, int y);
 
 // Animation
 
