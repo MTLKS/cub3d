@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 19:10:44 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:43:37 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	cub_init_ctx(t_ctx *ctx)
 	ctx->ceiling_parsed = 0;
 	ctx->prev_ray = 0;
 	ctx->mlx_data = ft_calloc(1, sizeof(t_mlxx_data_addr));
+	ctx->has_door = 0;
 	if (!ctx->mlx_data)
 	{
 		ft_dprintf(2, "Error: cannot initialize mlx_data.\n");
