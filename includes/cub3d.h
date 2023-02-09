@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 19:01:56 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:43:15 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_ctx
 	t_key				key;
 	t_mlxx_img			**anim;
 	int					anim_frame;
+	int					has_door;
 }	t_ctx;
 
 // Drawing structs
@@ -215,7 +216,7 @@ void			cub_free_and_exit(t_ctx *ctx);
 // Map parsing
 
 int				cub_check_struct(t_ctx *ctx);
-int				cub_parse_elements(t_ctx *ctx, t_list **buffer);
+int				cub_parse_elements(t_ctx *ctx, t_list **buffer, t_list *end);
 int				cub_parse_map_file(t_ctx *ctx, char *path);
 
 // Color Utils

@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 13:59:03 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 19:22:17 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:40:33 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,12 @@ static int	cub_parse_element(t_ctx *ctx, char *line)
  * 
  * @return 0 when all elements are parsed, 1 if error
 */
-int	cub_parse_elements(t_ctx *ctx, t_list **buffer)
+int	cub_parse_elements(t_ctx *ctx, t_list **buffer, t_list *end)
 {
 	t_list	*temp;
 	char	*line;
 
-	while ((*buffer)->next
-		&& !(ctx->north && ctx->south && ctx->east && ctx->west
-			&& ctx->door && ctx->floor_parsed && ctx->ceiling_parsed))
+	while ((*buffer)->next && *buffer != end)
 	{
 		line = (*buffer)->content;
 		if (*line != '\0' && cub_parse_element(ctx, line))

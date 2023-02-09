@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 22:26:43 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:44:34 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ static int	cub_check_map_array(t_ctx *ctx)
 		j = -1;
 		while (++j < ctx->map_width)
 		{
+			if (ctx->map[i][j] == 0)
+				continue ;
 			if (ft_strchr(" 012NSEW", ctx->map[i][j]) == 0)
 				return (1);
 			if (cub_check_surrounding_tiles(ctx, i, j))
@@ -102,6 +104,8 @@ static int	cub_check_map_array(t_ctx *ctx)
 			if (ft_strchr("NSEW", ctx->map[i][j]) != 0 && ctx->map[i][j] &&
 				cub_set_player_position(ctx, i, j, ctx->map[i][j]))
 				return (1);
+			if (ctx->map[i][j] == '2')
+				ctx->has_door = 1;
 		}
 	}
 	return (0);
@@ -119,12 +123,19 @@ int	cub_check_struct(t_ctx *ctx)
 {
 	if (ctx->map_width == 0 || ctx->map_height == 0 || ctx->north == NULL
 		|| ctx->south == NULL || ctx->east == NULL || ctx->west == NULL
-		|| ctx->door == NULL || ctx->ceiling_parsed == 0
-		|| ctx->floor_parsed == 0)
+		|| ctx->ceiling_parsed == 0 || ctx->floor_parsed == 0)
+	{
+		ft_dprintf(2, "Error: missing element.\n");
 		return (1);
+	}
 	if (cub_check_map_array(ctx))
 	{
 		ft_dprintf(2, "Error: map problems.\n");
+		return (1);
+	}
+	if (ctx->has_door && ctx->door == NULL)
+	{
+		ft_dprintf(2, "Error: missing door image.\n");
 		return (1);
 	}
 	return (0);

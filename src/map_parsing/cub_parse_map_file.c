@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:42:33 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 19:07:50 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:07:47 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,19 @@ static int	cub_open_map_fd(char *path)
 */
 static int	cub_parse_struct(t_ctx *ctx, t_list **map_buffer)
 {
-	int	status;
+	int		status;
+	t_list	*map;
+	t_list	*temp;
 
-	status = (cub_parse_elements(ctx, map_buffer)
-			|| cub_parse_map(ctx, *map_buffer)
+	temp = *map_buffer;
+	while (temp)
+	{
+		if (*(char *)(temp)->content == '\0')
+			map = temp;
+		temp = temp->next;
+	}
+	status = (cub_parse_elements(ctx, map_buffer, map)
+			|| cub_parse_map(ctx, map)
 			|| cub_check_struct(ctx));
 	ft_lstclear(map_buffer, &free);
 	return (status);
