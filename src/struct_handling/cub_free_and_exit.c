@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:13:47 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 21:19:00 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:56:05 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,16 @@ static void	cub_free_anim(t_ctx *ctx)
 
 void	cub_free_and_exit(t_ctx *ctx)
 {
-	mlx_destroy_window(ctx->mlx, ctx->win);
+	if (ctx->mlx != NULL || ctx->win != NULL)
+		mlx_destroy_window(ctx->mlx, ctx->win);
 	cub_free_imgs(ctx);
-	cub_free_anim(ctx);
-	free(ctx->player);
-	free(ctx->mlx_data);
-	cub_free_2d_array(ctx->map, ctx->map_height);
+	if (ctx->anim != NULL)
+		cub_free_anim(ctx);
+	if (ctx->player != NULL)
+		free(ctx->player);
+	if (ctx->mlx_data != NULL)
+		free(ctx->mlx_data);
+	if (ctx->map != NULL)
+		cub_free_2d_array(ctx->map, ctx->map_height);
 	exit(0);
 }

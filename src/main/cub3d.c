@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:46 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/07 19:35:37 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:49:50 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ int	main(int argc, char **argv)
 	}
 	ctx.mlx = mlx_init();
 	ctx.win = mlx_new_window(ctx.mlx, 1024, 512, "cub3d");
-	if (cub_init_ctx(&ctx))
-		return (1);
-	if (cub_parse_map_file(&ctx, argv[1]))
-		return (1);
+	if (cub_init_ctx(&ctx) || cub_parse_map_file(&ctx, argv[1]))
+		cub_free_and_exit(&ctx);
 	ctx.action_image = mlxx_xpm_file_to_img(ctx.mlx, "assets/action.xpm");
 	generate_map_image(&ctx);
 	create_background_image(&ctx);

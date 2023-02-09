@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/09 17:43:37 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:54:22 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	cub_init_key(t_ctx *ctx)
 
 static void	cub_init_imgs(t_ctx *ctx)
 {
+	ctx->img = NULL;
 	ctx->map_image = NULL;
 	ctx->minimap_image = NULL;
 	ctx->background_image = NULL;

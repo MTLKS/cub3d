@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:42:35 by echai             #+#    #+#             */
-/*   Updated: 2023/02/09 18:12:53 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:55:18 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	door_handler(t_ctx *ctx)
 		else if (ft_strchr("3", ctx->map[pos_y][pos_x]) != 0)
 			ctx->map[pos_y][pos_x] = '2';
 	}
-
 }
 
 int	mouse_up_hook(int button, int x, int y, t_ctx *ctx)

@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:32:07 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/09 17:44:34 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 19:00:37 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,14 @@ static int	cub_check_map_array(t_ctx *ctx)
 */
 int	cub_check_struct(t_ctx *ctx)
 {
-	if (ctx->map_width == 0 || ctx->map_height == 0 || ctx->north == NULL
-		|| ctx->south == NULL || ctx->east == NULL || ctx->west == NULL
-		|| ctx->ceiling_parsed == 0 || ctx->floor_parsed == 0)
+	if (ctx->north == NULL || ctx->south == NULL || ctx->east == NULL
+		|| ctx->west == NULL || ctx->ceiling_parsed == 0
+		|| ctx->floor_parsed == 0)
 	{
 		ft_dprintf(2, "Error: missing element.\n");
 		return (1);
 	}
-	if (cub_check_map_array(ctx))
+	if (ctx->map_width < 3 || ctx->map_height < 3 || cub_check_map_array(ctx))
 	{
 		ft_dprintf(2, "Error: map problems.\n");
 		return (1);
@@ -136,6 +136,11 @@ int	cub_check_struct(t_ctx *ctx)
 	if (ctx->has_door && ctx->door == NULL)
 	{
 		ft_dprintf(2, "Error: missing door image.\n");
+		return (1);
+	}
+	if (ctx->player->x == 0 && ctx->player->y == 0)
+	{
+		ft_dprintf(2, "Error: missing player.\n");
 		return (1);
 	}
 	return (0);
