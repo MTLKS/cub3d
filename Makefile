@@ -3,6 +3,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror #-g -fsanitize=address
 RM			= rm -rf
 LIBFT		= libft
+MLX			= mlx
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
@@ -28,6 +29,7 @@ all:	$(NAME)
 bonus:	all
 
 $(NAME):	$(OBJS)
+			$(MAKE) -C $(MLX)
 			$(MAKE) -C $(LIBFT)
 			$(CC) $(CFLAGS) $^ $(MLXFLAGS) -I$(INCLUDES) -L$(LIBFT) -lft -o $@
 
@@ -39,10 +41,12 @@ $(OBJ_PATH):
 
 clean:
 			$(MAKE) -C $(LIBFT) $@
+			$(MAKE) -C $(MLX) $@
 			rm -rf $(OBJ_PATH)
 
 fclean:		clean
 			$(MAKE) -C $(LIBFT) $@
+			$(MAKE) -C $(MLX) clean
 			rm -f $(NAME) $(CHECKER)
 
 re:			fclean all

@@ -1,6 +1,7 @@
 .vscode
 cub3d
 obj/
-mlx/
+mlx/*.o
+mlx/*.a
 mlx_linux/
 .DS_Store
