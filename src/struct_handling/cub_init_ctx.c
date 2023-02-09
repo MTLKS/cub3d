@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:26:10 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/09 18:54:22 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/09 19:20:14 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	cub_init_player(t_ctx *ctx)
 
 int	cub_init_ctx(t_ctx *ctx)
 {
+	ctx->map = NULL;
 	ctx->map_width = 0;
 	ctx->map_height = 0;
 	ctx->floor = 0;
