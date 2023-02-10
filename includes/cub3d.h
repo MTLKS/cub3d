@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:31:19 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/09 18:13:29 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:04:32 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,7 @@ void			cub_free_and_exit(t_ctx *ctx);
 int				cub_check_struct(t_ctx *ctx);
 int				cub_parse_elements(t_ctx *ctx, t_list **buffer, t_list *end);
 int				cub_parse_map_file(t_ctx *ctx, char *path);
+int				cub_check_digit(char *color);
 
 // Color Utils
 

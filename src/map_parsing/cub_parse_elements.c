@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 13:59:03 by maliew            #+#    #+#             */
-/*   Updated: 2023/02/09 17:40:33 by maliew           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:17:32 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,23 @@ static int	cub_store_element_color(t_ctx *ctx, char *id, char *color)
 
 	status = 0;
 	colors_split = ft_split(color, ',');
-	if (cub_2darray_count_row(colors_split) != 3)
+	if (cub_2darray_count_row(colors_split) != 3 || cub_check_digit(color))
 		status = 1;
 	else
 	{
 		i = -1;
 		while (colors_split[++i])
 			colors[i] = ft_atoi(colors_split[i]);
+		while (colors_split[++i - 4])
+			status = (colors[i - 4] < 0 || colors[i - 4] > 255) | status;
 		if (ft_strncmp(id, "F", 2) == 0 && ctx->floor_parsed == 0)
 			ctx->floor = cub_create_trgb(0, colors[0], colors[1], colors[2]);
 		else if (ft_strncmp(id, "C", 2) == 0 && ctx->ceiling_parsed == 0)
 			ctx->ceiling = cub_create_trgb(0, colors[0], colors[1], colors[2]);
 		else
 			status = 1;
-		cub_free_2d_nt_array(colors_split);
 	}
+	cub_free_2d_nt_array(colors_split);
 	return (status);
 }
 
@@ -87,11 +89,13 @@ static int	cub_parse_element(t_ctx *ctx, char *line)
 	char	**array;
 
 	array = ft_split(line, ' ');
-	if (cub_2darray_count_row(array) != 2)
+	if (cub_2darray_count_row(array) != 2
+		|| (cub_store_element_img(ctx, array[0], array[1])
+			&& cub_store_element_color(ctx, array[0], array[1])))
+	{
+		cub_free_2d_nt_array(array);
 		return (1);
-	if (cub_store_element_img(ctx, array[0], array[1])
-		&& cub_store_element_color(ctx, array[0], array[1]))
-		return (1);
+	}
 	if (ft_strncmp(array[0], "F", 2) == 0 && ctx->floor_parsed == 0)
 		ctx->floor_parsed = 1;
 	else if (ft_strncmp(array[0], "C", 2) == 0 && ctx->floor_parsed == 0)
