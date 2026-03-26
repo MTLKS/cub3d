@@ -4,9 +4,10 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     gnumake
     libgcc
-    xorg.libXext
-    xorg.libX11
+    libXext
+    libX11
     minilibx
+    zlib
   ];
 }
 
