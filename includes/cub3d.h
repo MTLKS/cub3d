@@ -21,8 +21,8 @@
 #  include "../mlx/mlx.h"
 #  define ANIM_SPEED 5
 # else
-#  include "../mlx_linux/mlx.h"
-#  define ANIM_SPEED 50
+#  include <mlx.h>
+#  define ANIM_SPEED 5
 # endif
 
 // Key definition

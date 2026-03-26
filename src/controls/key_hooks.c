@@ -21,13 +21,13 @@ static void	toggle_mouse(t_ctx *ctx)
 {
 	if (ctx->key.mouse)
 	{
-		mlx_mouse_show();
+		mlx_mouse_show(ctx->mlx, ctx->win);
 		ctx->key.mouse = 0;
 	}
 	else
 	{
-		mlx_mouse_hide();
-		mlx_mouse_move(ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		mlx_mouse_hide(ctx->mlx, ctx->win);
+		mlx_mouse_move(ctx->mlx, ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 		ctx->key.mouse = 1;
 	}
 }
@@ -90,7 +90,7 @@ int	mouse_hook(int x, int y, t_ctx *ctx)
 			ctx->player->angle += 2 * PI;
 		if (ctx->player->angle > 2 * PI)
 			ctx->player->angle -= 2 * PI;
-		mlx_mouse_move(ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		mlx_mouse_move(ctx->mlx, ctx->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	}
 	return (0);
 }

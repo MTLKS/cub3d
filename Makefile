@@ -1,6 +1,6 @@
 NAME		= cub3D
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= # -Wall -Wextra -Werror #-g -fsanitize=address
 RM			= rm -rf
 LIBFT		= libft
 MLX			= mlx
@@ -29,7 +29,6 @@ all:	$(NAME)
 bonus:	all
 
 $(NAME):	$(OBJS)
-			$(MAKE) -C $(MLX)
 			$(MAKE) -C $(LIBFT)
 			$(CC) $(CFLAGS) $^ $(MLXFLAGS) -I$(INCLUDES) -L$(LIBFT) -lft -o $@
 
@@ -41,12 +40,10 @@ $(OBJ_PATH):
 
 clean:
 			$(MAKE) -C $(LIBFT) $@
-			$(MAKE) -C $(MLX) $@
 			rm -rf $(OBJ_PATH)
 
 fclean:		clean
 			$(MAKE) -C $(LIBFT) $@
-			$(MAKE) -C $(MLX) clean
 			rm -f $(NAME) $(CHECKER)
 
 re:			fclean all

@@ -35,12 +35,13 @@ int	main(int argc, char **argv)
 	generate_map_image(&ctx);
 	create_background_image(&ctx);
 	load_animation(&ctx);
-	mlx_loop_hook(ctx.mlx, render, &ctx);
-	mlx_hook(ctx.win, 2, 1L << 0, keydown_hook, &ctx);
-	mlx_hook(ctx.win, 3, 1L << 1, keyup_hook, &ctx);
-	mlx_hook(ctx.win, 5, 1L << 3, mouse_up_hook, &ctx);
-	mlx_hook(ctx.win, 6, 1L << 6, mouse_hook, &ctx);
-	mlx_hook(ctx.win, 17, 0L, cub_exit_event, &ctx);
+	mlx_loop_hook(ctx.mlx, (int (*)())render, &ctx);
+	mlx_hook(ctx.win, 2, 1L << 0, (int (*)())keydown_hook, &ctx);
+	mlx_hook(ctx.win, 3, 1L << 1, (int (*)())keyup_hook, &ctx);
+	// mlx_hook(ctx.win, 5, 1L << 3, (int (*)())mouse_up_hook, &ctx);
+	mlx_mouse_hook(ctx.win, (int (*)())mouse_up_hook, &ctx);
+	mlx_hook(ctx.win, 6, 1L << 6, (int (*)())mouse_hook, &ctx);
+	mlx_hook(ctx.win, 17, 0L, (int (*)())cub_exit_event, &ctx);
 	mlx_loop(ctx.mlx);
 	return (0);
 }
